@@ -116,6 +116,43 @@
           }
         }
       }
+    },
+    "gyrus-template-io-bus": {
+      "projectType": "library",
+      "root": "libs/gyrus/template-io-bus",
+      "sourceRoot": "libs/gyrus/template-io-bus/src",
+      "prefix": "playground",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/gyrus/template-io-bus/tsconfig.lib.json",
+            "project": "libs/gyrus/template-io-bus/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/gyrus/template-io-bus/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/gyrus/template-io-bus/src/**/*.ts",
+              "libs/gyrus/template-io-bus/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/gyrus/template-io-bus"],
+          "options": {
+            "jestConfig": "libs/gyrus/template-io-bus/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
@@ -135,11 +172,19 @@
       }
     },
     "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
       "unitTestRunner": "jest",
       "e2eTestRunner": "cypress"
     },
     "@nrwl/angular:library": {
-      "unitTestRunner": "jest"
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "strict": true
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
     }
   },
   "defaultProject": "playground"
