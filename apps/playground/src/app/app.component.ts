@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BooksEntity } from './+state/books.models';
 import { AppComponentStateService } from './app-component-state.service';
-import { LoggerService } from '@gyrus/template-io-bus';
+import { LoggerService } from '@gyrus/ui-io-bus';
 
 @Component({
   selector: 'playground-root',
