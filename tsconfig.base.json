@@ -19,5 +19,8 @@
       "@gyrus/template-io-bus": ["libs/gyrus/template-io-bus/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp"],
+  "angularCompilerOptions":{
+    "strictTemplates": true
+  }
 }
