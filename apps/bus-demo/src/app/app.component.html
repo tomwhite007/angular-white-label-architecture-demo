@@ -4,38 +4,24 @@
 
 <main *ngIf="vm$ | async as vm">
   <section class="mt-5 mb-5">
-    <app-show-form-checkbox></app-show-form-checkbox>
+    <app-show-form-checkbox
+      [checked]="vm.showForm"
+      (changed)="toggleShowForm()"
+    ></app-show-form-checkbox>
 
     <app-add-book-form
-      *ngIf="vm.showForm"
+      [showForm]="vm.showForm"
       (submittedBook)="upsertBook($event)"
     ></app-add-book-form>
   </section>
 
-  <nav>
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          (click)="selectTab(0)"
-          [class.active]="vm.selectedTab === 0"
-          >Book List</a
-        >
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          (click)="selectTab(1)"
-          [class.active]="vm.selectedTab === 1"
-          >Other Book Stuff</a
-        >
-      </li>
-    </ul>
-  </nav>
-
-  <section [ngSwitch]="vm.selectedTab">
+  <app-tabs
+    [selectedTab]="vm.selectedTab"
+    (tabSelected)="selectTab($event)"
+    [ngSwitch]="vm.selectedTab"
+  >
     <app-book-list *ngSwitchCase="0" [books]="vm.allBooks"></app-book-list>
 
     <app-book-stuff *ngSwitchCase="1"></app-book-stuff>
-  </section>
+  </app-tabs>
 </main>

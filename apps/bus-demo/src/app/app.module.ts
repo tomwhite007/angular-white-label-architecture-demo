@@ -15,6 +15,7 @@ import { BookStuffComponent } from './book-stuff/book-stuff.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentStore } from '@ngrx/component-store';
 import { ShowFormCheckboxComponent } from './show-form-checkbox/show-form-checkbox.component';
+import { TabsComponent } from './tabs/tabs.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ShowFormCheckboxComponent } from './show-form-checkbox/show-form-checkb
     AddBookFormComponent,
     BookStuffComponent,
     ShowFormCheckboxComponent,
+    TabsComponent,
   ],
   imports: [
     BrowserModule,

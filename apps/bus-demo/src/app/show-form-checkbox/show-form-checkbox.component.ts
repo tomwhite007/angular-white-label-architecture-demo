@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-show-form-checkbox',
   templateUrl: './show-form-checkbox.component.html',
   styleUrls: ['./show-form-checkbox.component.scss'],
 })
-export class ShowFormCheckboxComponent implements OnInit {
-  constructor() {}
+export class ShowFormCheckboxComponent {
+  @Input() checked: boolean;
 
-  ngOnInit(): void {}
+  @Output() changed = new EventEmitter<boolean>();
 
-  handleChange(event: Event) {}
+  handleChange() {
+    this.checked = !this.checked;
+    this.changed.emit(this.checked);
+  }
 }

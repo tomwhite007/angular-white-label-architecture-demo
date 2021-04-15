@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  Input,
   OnInit,
   Output,
 } from '@angular/core';
@@ -15,6 +16,7 @@ import { BooksEntity } from '../+state/books.models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddBookFormComponent {
+  @Input() showForm: boolean;
   @Output() submittedBook: EventEmitter<BooksEntity> = new EventEmitter();
 
   formGroup = new FormGroup({
