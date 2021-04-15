@@ -16,9 +16,7 @@ export interface BooksPartialState {
   readonly [BOOKS_FEATURE_KEY]: State;
 }
 
-export const booksAdapter: EntityAdapter<BooksEntity> = createEntityAdapter<
-  BooksEntity
->();
+export const booksAdapter: EntityAdapter<BooksEntity> = createEntityAdapter<BooksEntity>();
 
 export const initialState: State = booksAdapter.getInitialState({
   // set initial required properties

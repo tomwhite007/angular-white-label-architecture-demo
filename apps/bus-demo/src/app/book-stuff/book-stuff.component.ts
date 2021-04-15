@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'playground-book-stuff',
+  selector: 'bus-demo-book-stuff',
   templateUrl: './book-stuff.component.html',
   styleUrls: ['./book-stuff.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

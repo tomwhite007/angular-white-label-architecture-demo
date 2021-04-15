@@ -16,10 +16,10 @@
       </div>
     </div>
 
-    <playground-add-book-form
+    <bus-demo-add-book-form
       *ngIf="vm.showForm"
       (submittedBook)="upsertBook($event)"
-    ></playground-add-book-form>
+    ></bus-demo-add-book-form>
   </section>
 
   <nav>
@@ -44,11 +44,11 @@
   </nav>
 
   <section [ngSwitch]="vm.selectedTab">
-    <playground-book-list
+    <bus-demo-book-list
       *ngSwitchCase="0"
       [books]="vm.allBooks"
-    ></playground-book-list>
+    ></bus-demo-book-list>
 
-    <playground-book-stuff *ngSwitchCase="1"></playground-book-stuff>
+    <bus-demo-book-stuff *ngSwitchCase="1"></bus-demo-book-stuff>
   </section>
 </main>
