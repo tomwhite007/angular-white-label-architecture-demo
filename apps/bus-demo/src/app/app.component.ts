@@ -3,7 +3,7 @@ import { BooksEntity } from './+state/books.models';
 import { AppComponentStateService } from './app-component-state.service';
 
 @Component({
-  selector: 'bus-demo-root',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

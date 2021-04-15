@@ -38,7 +38,7 @@
       "projectType": "library",
       "root": "libs/gyrus/template-io-bus",
       "sourceRoot": "libs/gyrus/template-io-bus/src",
-      "prefix": "bus-demo",
+      "prefix": "iobus",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
@@ -80,7 +80,7 @@
       },
       "root": "apps/bus-demo",
       "sourceRoot": "apps/bus-demo/src",
-      "prefix": "bus-demo",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

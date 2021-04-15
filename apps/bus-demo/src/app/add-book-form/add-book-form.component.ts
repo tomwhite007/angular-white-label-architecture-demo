@@ -9,7 +9,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { BooksEntity } from '../+state/books.models';
 
 @Component({
-  selector: 'bus-demo-add-book-form',
+  selector: 'app-add-book-form',
   templateUrl: './add-book-form.component.html',
   styleUrls: ['./add-book-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
