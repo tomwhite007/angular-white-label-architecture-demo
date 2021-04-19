@@ -17,3 +17,8 @@ export const updsertItem = createAction(
   '[AppComponent] Update Item',
   props<{ item: BooksEntity }>()
 );
+
+export const selectId = createAction(
+  '[AppComponent] Select ID',
+  props<{ id: string }>()
+);

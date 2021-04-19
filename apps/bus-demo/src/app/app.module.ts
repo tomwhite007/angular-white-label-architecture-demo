@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentStore } from '@ngrx/component-store';
 import { ShowFormCheckboxComponent } from './show-form-checkbox/show-form-checkbox.component';
 import { TabsComponent } from './tabs/tabs.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { TabsComponent } from './tabs/tabs.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     StoreModule.forRoot(
       {},
       {

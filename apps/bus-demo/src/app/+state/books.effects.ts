@@ -4,25 +4,20 @@ import { fetch } from '@nrwl/angular';
 
 import * as fromBooks from './books.reducer';
 import * as BooksActions from './books.actions';
+import { BooksApiService } from '../_shared/books-api.service';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Injectable()
 export class BooksEffects {
   loadBooks$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BooksActions.loadBooks),
-      fetch({
-        run: (action) => {
-          // Your custom service 'load' logic goes here. For now just return a success action...
-          return BooksActions.loadBooksSuccess({ books: [] });
-        },
-
-        onError: (action, error) => {
-          console.error('Error', error);
-          return BooksActions.loadBooksFailure({ error });
-        },
-      })
+      switchMap(() => this.api.getBooks()),
+      map((res) => BooksActions.loadBooksSuccess({ books: res })),
+      catchError((error) => of(BooksActions.loadBooksFailure({ error })))
     )
   );
 
-  constructor(private actions$: Actions) {}
+  constructor(private actions$: Actions, private api: BooksApiService) {}
 }

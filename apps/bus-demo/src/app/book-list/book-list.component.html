@@ -6,7 +6,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let book of books; let i = index">
+    <tr
+      *ngFor="let book of books; let i = index"
+      (click)="handleClick(i)"
+      [ngClass]="{ selected: book.id === selectedId }"
+    >
       <td>{{ book.id }}</td>
       <td>{{ book.title }}</td>
     </tr>

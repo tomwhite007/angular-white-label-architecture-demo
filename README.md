@@ -2,6 +2,12 @@
 
 Experiment into using @Input and @Output as a bus to reduce template footprint and make state composable
 
+## Todo
+
+1. Load dummy books at start
+2. Add selected book record to form as extra input
+3. Add custom behaviour input to checkbox
+
 ## Ideas
 
 - Event Object - Class or Interface

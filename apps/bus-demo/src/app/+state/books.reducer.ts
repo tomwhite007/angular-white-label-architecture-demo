@@ -39,7 +39,8 @@ const booksReducer = createReducer(
   })),
   on(BooksActions.updsertItem, (state, { item }) =>
     booksAdapter.upsertOne(item, state)
-  )
+  ),
+  on(BooksActions.selectId, (state, { id }) => ({ ...state, selectedId: id }))
 );
 
 export function reducer(state: State | undefined, action: Action) {

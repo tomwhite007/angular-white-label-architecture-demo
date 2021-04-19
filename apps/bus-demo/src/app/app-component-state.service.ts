@@ -21,7 +21,14 @@ export class AppComponentStateService extends ComponentStore<LocalState> {
   readonly vm$ = this.select(
     this.select((state) => state),
     this.books.allBooks$,
-    (LocalState, allBooks) => ({ ...LocalState, allBooks })
+    this.books.selectedBook$,
+    this.books.selectedId$,
+    (LocalState, allBooks, selectedBook, selectedId) => ({
+      ...LocalState,
+      allBooks,
+      selectedBook,
+      selectedId,
+    })
   );
 
   readonly selectedTab$ = this.select((state) => state.selectedTab);
@@ -66,7 +73,15 @@ export class AppComponentStateService extends ComponentStore<LocalState> {
 
   // Global state
 
+  loadBooks() {
+    this.books.loadBooks();
+  }
+
   upsertBook(book: BooksEntity) {
     this.books.upsertBook(book);
+  }
+
+  selectBook(id: string) {
+    this.books.selectBook(id);
   }
 }

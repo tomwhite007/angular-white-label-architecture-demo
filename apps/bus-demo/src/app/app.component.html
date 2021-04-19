@@ -20,8 +20,12 @@
     (tabSelected)="selectTab($event)"
     [ngSwitch]="vm.selectedTab"
   >
-    <app-book-list *ngSwitchCase="0" [books]="vm.allBooks"></app-book-list>
-
+    <app-book-list
+      *ngSwitchCase="0"
+      [books]="vm.allBooks"
+      (selectBook)="selectBook($event)"
+      [selectedId]="vm.selectedId"
+    ></app-book-list>
     <app-book-stuff *ngSwitchCase="1"></app-book-stuff>
   </app-tabs>
 </main>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { BooksEntity } from './+state/books.models';
 import { AppComponentStateService } from './app-component-state.service';
 
@@ -9,10 +9,14 @@ import { AppComponentStateService } from './app-component-state.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [AppComponentStateService],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   vm$ = this.state.vm$;
 
   constructor(private state: AppComponentStateService) {}
+
+  ngOnInit() {
+    this.state.loadBooks();
+  }
 
   toggleShowForm() {
     this.state.toggleShowForm();
@@ -24,5 +28,9 @@ export class AppComponent {
 
   upsertBook(book: BooksEntity) {
     this.state.upsertBook(book);
+  }
+
+  selectBook(id: string) {
+    this.state.selectBook(id);
   }
 }
