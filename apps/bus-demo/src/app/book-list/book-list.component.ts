@@ -20,6 +20,8 @@ export class BookListComponent {
   @Output() selectBook = new EventEmitter<string>();
 
   handleClick(index: number) {
-    this.selectBook.emit(this.books[index].id);
+    const id =
+      this.selectedId === this.books[index].id ? null : this.books[index].id;
+    this.selectBook.emit(id);
   }
 }
