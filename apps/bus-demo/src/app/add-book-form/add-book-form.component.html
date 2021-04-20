@@ -3,7 +3,7 @@
     <div class="form-group">
       <label for="bookId">ISBN number</label>
       <input
-        type="email"
+        type="text"
         class="form-control"
         id="bookId"
         placeholder="Enter ISBN number"
@@ -22,6 +22,8 @@
         autocomplete="off"
       />
     </div>
-    <button type="submit" class="btn btn-primary">Add book</button>
+    <button type="submit" class="btn btn-primary">
+      {{ buttonText }}
+    </button>
   </form>
 </ng-container>

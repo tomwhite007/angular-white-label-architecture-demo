@@ -12,6 +12,7 @@
     <app-add-book-form
       [showForm]="vm.showForm"
       (submittedBook)="upsertBook($event)"
+      [selectedBook]="vm.selectedBook"
     ></app-add-book-form>
   </section>
 
@@ -26,6 +27,9 @@
       (selectBook)="selectBook($event)"
       [selectedId]="vm.selectedId"
     ></app-book-list>
+
     <app-book-stuff *ngSwitchCase="1"></app-book-stuff>
   </app-tabs>
 </main>
+
+<ng-template #booklist> </ng-template>

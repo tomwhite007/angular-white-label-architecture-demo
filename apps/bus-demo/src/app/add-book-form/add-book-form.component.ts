@@ -17,12 +17,25 @@ import { BooksEntity } from '../+state/books.models';
 })
 export class AddBookFormComponent {
   @Input() showForm: boolean;
+  @Input() set selectedBook(book: BooksEntity | null) {
+    if (book) {
+      this.formGroup.setValue(book);
+      this.buttonText = 'Update book';
+      this.formGroup.controls.id.disable();
+    } else {
+      this.formGroup.reset();
+      this.buttonText = 'Add book';
+      this.formGroup.controls.id.enable();
+    }
+  }
   @Output() submittedBook: EventEmitter<BooksEntity> = new EventEmitter();
 
   formGroup = new FormGroup({
     id: new FormControl(''),
     title: new FormControl(''),
   });
+
+  buttonText = 'Add book';
 
   submit() {
     this.submittedBook.emit(this.formGroup.value);
