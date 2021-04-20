@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class ShowFormCheckboxComponent {
   @Input() checked: boolean;
+  @Input() updateMode: boolean;
 
   @Output() changed = new EventEmitter<boolean>();
 
