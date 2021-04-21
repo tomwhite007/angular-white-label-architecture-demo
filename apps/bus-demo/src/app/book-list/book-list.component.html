@@ -7,7 +7,7 @@
   </thead>
   <tbody>
     <tr
-      *ngFor="let book of books; let i = index"
+      *ngFor="let book of books; trackBy: trackByFn; let i = index"
       (click)="handleClick(i)"
       [ngClass]="{ selected: book.id === selectedId }"
     >

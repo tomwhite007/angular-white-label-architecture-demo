@@ -24,4 +24,8 @@ export class BookListComponent {
       this.selectedId === this.books[index].id ? null : this.books[index].id;
     this.selectBook.emit(id);
   }
+
+  trackByFn(index: number, item: BooksEntity) {
+    return item.id;
+  }
 }
