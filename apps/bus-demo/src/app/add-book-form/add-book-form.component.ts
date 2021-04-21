@@ -38,6 +38,6 @@ export class AddBookFormComponent {
   buttonText = 'Add book';
 
   submit() {
-    this.submittedBook.emit(this.formGroup.value);
+    this.submittedBook.emit(this.formGroup.getRawValue());
   }
 }
