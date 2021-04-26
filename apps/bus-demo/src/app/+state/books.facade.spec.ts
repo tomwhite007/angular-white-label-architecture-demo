@@ -10,6 +10,7 @@ import { NxModule } from '@nrwl/angular';
 import { BooksEntity } from './books.models';
 import { BooksEffects } from './books.effects';
 import { BooksFacade } from './books.facade';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import * as BooksSelectors from './books.selectors';
 import * as BooksActions from './books.actions';
@@ -33,6 +34,7 @@ describe('BooksFacade', () => {
     beforeEach(() => {
       @NgModule({
         imports: [
+          HttpClientTestingModule,
           StoreModule.forFeature(BOOKS_FEATURE_KEY, reducer),
           EffectsModule.forFeature([BooksEffects]),
         ],

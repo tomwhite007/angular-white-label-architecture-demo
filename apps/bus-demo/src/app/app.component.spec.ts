@@ -10,6 +10,7 @@ describe('AppComponent', () => {
     const mockFacade = {
       selectedBooks$: of([]),
       upsertBook: jest.fn(),
+      loadBooks: jest.fn(),
     };
     await TestBed.configureTestingModule({
       declarations: [AppComponent],

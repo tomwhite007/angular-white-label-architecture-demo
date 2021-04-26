@@ -1,6 +1,6 @@
 import { TestBed, async } from '@angular/core/testing';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { provideMockActions } from '@ngrx/effects/testing';
 import { provideMockStore } from '@ngrx/store/testing';
@@ -10,10 +10,14 @@ import { hot } from '@nrwl/angular/testing';
 
 import { BooksEffects } from './books.effects';
 import * as BooksActions from './books.actions';
+import { BooksApiService } from '../_shared/books-api.service';
 
 describe('BooksEffects', () => {
   let actions: Observable<any>;
   let effects: BooksEffects;
+  const mockBooksApiService = {
+    getBooks: jest.fn(),
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -23,6 +27,7 @@ describe('BooksEffects', () => {
         DataPersistence,
         provideMockActions(() => actions),
         provideMockStore(),
+        { provide: BooksApiService, useValue: mockBooksApiService },
       ],
     });
 
@@ -31,10 +36,18 @@ describe('BooksEffects', () => {
 
   describe('loadBooks$', () => {
     it('should work', () => {
+      const dummyBooks = [
+        {
+          id: '9780141199078',
+          title: 'Pride and Prejudice',
+        },
+      ];
+      mockBooksApiService.getBooks.mockReturnValue(of(dummyBooks));
+
       actions = hot('-a-|', { a: BooksActions.loadBooks() });
 
       const expected = hot('-a-|', {
-        a: BooksActions.loadBooksSuccess({ books: [] }),
+        a: BooksActions.loadBooksSuccess({ books: dummyBooks }),
       });
 
       expect(effects.loadBooks$).toBeObservable(expected);
