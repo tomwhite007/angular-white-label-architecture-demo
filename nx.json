@@ -1,4 +1,7 @@
 {
+  "affected": {
+    "defaultBase": "master"
+  },
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": {
@@ -9,9 +12,6 @@
     "tslint.json": "*",
     ".eslintrc.json": "*",
     "nx.json": "*"
-  },
-  "affected": {
-    "defaultBase": "master"
   },
   "npmScope": "bus-demo",
   "tasksRunnerOptions": {
