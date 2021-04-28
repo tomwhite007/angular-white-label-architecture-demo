@@ -23,7 +23,7 @@
     }
   },
   "projects": {
-    "gyrus-template-io-bus": {
+    "gyrus-ui-io-bus": {
       "tags": []
     },
     "bus-demo": {
