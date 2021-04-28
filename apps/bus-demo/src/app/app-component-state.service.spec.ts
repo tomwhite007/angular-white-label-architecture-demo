@@ -9,8 +9,10 @@ describe('AppComponentStateService', () => {
 
   beforeEach(() => {
     const mockFacade = {
-      selectedBooks$: of([]),
-      upsertBook: jest.fn(),
+      loaded$: of(true),
+      allBooks$: of([]),
+      selectedBook$: of(null),
+      selectedId$: of(null),
     };
 
     TestBed.configureTestingModule({
