@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { Observable, of } from 'rxjs';
 
@@ -11,9 +11,10 @@ import { hot } from '@nrwl/angular/testing';
 import { BooksEffects } from './books.effects';
 import * as BooksActions from './books.actions';
 import { BooksApiService } from '../_shared/books-api.service';
+import { Action } from '@ngrx/store';
 
 describe('BooksEffects', () => {
-  let actions: Observable<any>;
+  let actions: Observable<Action>;
   let effects: BooksEffects;
   const mockBooksApiService = {
     getBooks: jest.fn(),

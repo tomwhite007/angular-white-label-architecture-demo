@@ -10,7 +10,7 @@ export const loadBooksSuccess = createAction(
 
 export const loadBooksFailure = createAction(
   '[Books] Load Books Failure',
-  props<{ error: any }>()
+  props<{ error: unknown }>()
 );
 
 export const updsertItem = createAction(

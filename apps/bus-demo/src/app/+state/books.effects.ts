@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { fetch } from '@nrwl/angular';
-
-import * as fromBooks from './books.reducer';
 import * as BooksActions from './books.actions';
 import { BooksApiService } from '../_shared/books-api.service';
 import { catchError, map, switchMap } from 'rxjs/operators';

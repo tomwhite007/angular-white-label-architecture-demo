@@ -1,4 +1,4 @@
-import { BooksEntity } from './books.models';
+import { Action } from '@ngrx/store';
 import * as BooksActions from './books.actions';
 import { State, initialState, reducer } from './books.reducer';
 import { createBooksEntity } from './books.spec.helper';
@@ -21,7 +21,7 @@ describe('Books Reducer', () => {
 
   describe('unknown action', () => {
     it('should return the previous state', () => {
-      const action = {} as any;
+      const action = {} as Action;
 
       const result = reducer(initialState, action);
 

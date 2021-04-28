@@ -1,6 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { ComponentStore } from '@ngrx/component-store';
 import { of } from 'rxjs';
 import { BooksFacade } from './+state/books.facade';
 import { AppComponentStateService } from './app-component-state.service';

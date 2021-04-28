@@ -1,5 +1,4 @@
-import { BooksEntity } from './books.models';
-import { State, booksAdapter, initialState } from './books.reducer';
+import { booksAdapter, initialState } from './books.reducer';
 import * as BooksSelectors from './books.selectors';
 import { createBooksEntity } from './books.spec.helper';
 

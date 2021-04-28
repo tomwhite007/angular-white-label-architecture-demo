@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { readFirst } from '@nrwl/angular/testing';
 
 import { EffectsModule } from '@ngrx/effects';
-import { StoreModule, Store } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 
 import { NxModule } from '@nrwl/angular';
 
@@ -11,24 +11,10 @@ import { BooksEntity } from './books.models';
 import { BooksEffects } from './books.effects';
 import { BooksFacade } from './books.facade';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-
-import * as BooksSelectors from './books.selectors';
-import * as BooksActions from './books.actions';
-import {
-  BOOKS_FEATURE_KEY,
-  State,
-  initialState,
-  reducer,
-} from './books.reducer';
-import { createBooksEntity } from './books.spec.helper';
-
-interface TestSchema {
-  books: State;
-}
+import { BOOKS_FEATURE_KEY, reducer } from './books.reducer';
 
 describe('BooksFacade', () => {
   let facade: BooksFacade;
-  let store: Store<TestSchema>;
 
   describe('used in NgModule', () => {
     beforeEach(() => {
