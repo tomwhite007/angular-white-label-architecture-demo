@@ -4,9 +4,8 @@ Experiment into using @Input and @Output as a bus to reduce template footprint a
 
 ## Todo
 
-1. Load dummy books at start
-2. Add selected book record to form as extra input
-3. Add custom behaviour input to checkbox
+1. Add readme comments
+2. duplicate repo and Rename app
 
 ## Ideas
 

@@ -9,7 +9,7 @@ export const BOOKS_FEATURE_KEY = 'books';
 export interface State extends EntityState<BooksEntity> {
   selectedId?: string; // which Books record has been selected
   loaded: boolean; // has the Books list been loaded
-  error?: string | null; // last known error (if any)
+  error: unknown; // last known error (if any)
 }
 
 export interface BooksPartialState {
@@ -21,6 +21,7 @@ export const booksAdapter: EntityAdapter<BooksEntity> = createEntityAdapter<Book
 export const initialState: State = booksAdapter.getInitialState({
   // set initial required properties
   loaded: false,
+  error: null,
 });
 
 const booksReducer = createReducer(

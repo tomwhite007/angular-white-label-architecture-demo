@@ -12,7 +12,9 @@ export class BooksEffects {
       ofType(BooksActions.loadBooks),
       switchMap(() => this.api.getBooks()),
       map((res) => BooksActions.loadBooksSuccess({ books: res })),
-      catchError((error) => of(BooksActions.loadBooksFailure({ error })))
+      catchError((error: unknown) =>
+        of(BooksActions.loadBooksFailure({ error }))
+      )
     )
   );
 

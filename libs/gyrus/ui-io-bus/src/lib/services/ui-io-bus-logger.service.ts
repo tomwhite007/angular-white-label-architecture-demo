@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class LoggerService {
-  constructor() {}
-
+export class UiIoBusLoggerService {
   dummyStyledLog() {
     console.warn(
       '%c***** USING MOCK DATA API *****',

@@ -1,11 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { BooksFacade } from './+state/books.facade';
+import { BooksFacade } from '../+state/books.facade';
+import { BookManagerComponentStateService } from './book-manager-component-state.service';
 
-import { AppComponentStateService } from './app-component-state.service';
-
-describe('AppComponentStateService', () => {
-  let service: AppComponentStateService;
+describe('BookManagerComponentStateService', () => {
+  let service: BookManagerComponentStateService;
 
   beforeEach(() => {
     const mockFacade = {
@@ -17,11 +16,11 @@ describe('AppComponentStateService', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        AppComponentStateService,
+        BookManagerComponentStateService,
         { provide: BooksFacade, useValue: mockFacade },
       ],
     });
-    service = TestBed.inject(AppComponentStateService);
+    service = TestBed.inject(BookManagerComponentStateService);
   });
 
   it('should be created', () => {

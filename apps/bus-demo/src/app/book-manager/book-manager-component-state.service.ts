@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
-import { BooksFacade } from './+state/books.facade';
-import { BooksEntity } from './+state/books.models';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { BooksFacade } from '../+state/books.facade';
+import { BooksEntity } from '../+state/books.models';
 
 interface LocalState {
   showForm: boolean;
@@ -17,7 +17,7 @@ declare global {
 }
 
 @Injectable()
-export class AppComponentStateService extends ComponentStore<LocalState> {
+export class BookManagerComponentStateService extends ComponentStore<LocalState> {
   readonly vm$ = this.select(
     this.select((state) => state),
     this.books.allBooks$,
