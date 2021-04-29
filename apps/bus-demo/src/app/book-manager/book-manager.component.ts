@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoggerService } from '@gyrus/ui-io-bus';
+import { UiIoBusLoggerService } from '@gyrus/ui-io-bus';
 import { BooksEntity } from '../+state/books.models';
 import { BookManagerComponentStateService } from './book-manager-component-state.service';
 
@@ -14,7 +14,7 @@ export class BookManagerComponent implements OnInit {
 
   constructor(
     private state: BookManagerComponentStateService,
-    private log: LoggerService
+    private log: UiIoBusLoggerService
   ) {}
 
   ngOnInit() {
