@@ -17,6 +17,7 @@ import { ComponentStore } from '@ngrx/component-store';
 import { ShowFormCheckboxComponent } from './show-form-checkbox/show-form-checkbox.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BookManagerModule } from './book-manager/book-manager.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    BookManagerModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
