@@ -6,7 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { BooksEntity } from '../+state/books.models';
+import { BooksEntity } from '../../+state/books.models';
 
 @Component({
   selector: 'app-add-book-form',
