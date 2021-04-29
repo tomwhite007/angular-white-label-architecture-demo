@@ -6,7 +6,6 @@ Experiment into using @Input and @Output as a bus to reduce template footprint a
 
 1. Add readme comments
 2. duplicate repo and Rename app
-3. Seeperate into module
 
 ## Ideas
 
