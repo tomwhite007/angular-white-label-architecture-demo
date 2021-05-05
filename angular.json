@@ -6,7 +6,7 @@
       "projectType": "library",
       "root": "libs/gyrus/ui-io-bus",
       "sourceRoot": "libs/gyrus/ui-io-bus/src",
-      "prefix": "iobus",
+      "prefix": "playground",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
@@ -155,39 +155,116 @@
         }
       }
     },
-    "gyrus-ui-io-bus": {
-      "projectType": "library",
-      "root": "libs/gyrus/ui-io-bus",
-      "sourceRoot": "libs/gyrus/ui-io-bus/src",
-      "prefix": "playground",
+    "without-bus-demo": {
+      "projectType": "application",
+      "root": "apps/without-bus-demo",
+      "sourceRoot": "apps/without-bus-demo/src",
+      "prefix": "bus-demo",
       "architect": {
         "build": {
-          "builder": "@nrwl/angular:package",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "tsConfig": "libs/gyrus/ui-io-bus/tsconfig.lib.json",
-            "project": "libs/gyrus/ui-io-bus/ng-package.json"
+            "outputPath": "dist/apps/without-bus-demo",
+            "index": "apps/without-bus-demo/src/index.html",
+            "main": "apps/without-bus-demo/src/main.ts",
+            "polyfills": "apps/without-bus-demo/src/polyfills.ts",
+            "tsConfig": "apps/without-bus-demo/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/without-bus-demo/src/favicon.ico",
+              "apps/without-bus-demo/src/assets"
+            ],
+            "styles": ["apps/without-bus-demo/src/styles.scss"],
+            "scripts": []
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/gyrus/ui-io-bus/tsconfig.lib.prod.json"
+              "fileReplacements": [
+                {
+                  "replace": "apps/without-bus-demo/src/environments/environment.ts",
+                  "with": "apps/without-bus-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
             }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "without-bus-demo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "without-bus-demo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "without-bus-demo:build"
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/gyrus/ui-io-bus/src/**/*.ts",
-              "libs/gyrus/ui-io-bus/src/**/*.html"
+              "apps/without-bus-demo/src/**/*.ts",
+              "apps/without-bus-demo/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/gyrus/ui-io-bus"],
+          "outputs": ["coverage/apps/without-bus-demo"],
           "options": {
-            "jestConfig": "libs/gyrus/ui-io-bus/jest.config.js",
+            "jestConfig": "apps/without-bus-demo/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "without-bus-demo-e2e": {
+      "root": "apps/without-bus-demo-e2e",
+      "sourceRoot": "apps/without-bus-demo-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/without-bus-demo-e2e/cypress.json",
+            "tsConfig": "apps/without-bus-demo-e2e/tsconfig.e2e.json",
+            "devServerTarget": "without-bus-demo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "without-bus-demo:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/without-bus-demo-e2e/**/*.{js,ts}"]
           }
         }
       }
