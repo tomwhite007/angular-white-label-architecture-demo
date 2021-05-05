@@ -12,7 +12,7 @@
 
     <app-add-book-form
       [showForm]="vm.showForm"
-      (submittedBook)="upsertBook($event)"
+      (outBus)="outHandler($event)"
       [selectedBook]="vm.selectedBook"
     ></app-add-book-form>
   </section>

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UiIoBusLoggerService } from '@gyrus/ui-io-bus';
+import { OutputEvent, UiIoBusLoggerService } from '@gyrus/ui-io-bus';
 import { BooksEntity } from '../+state/books.models';
 import { BookManagerComponentStateService } from './book-manager-component-state.service';
+
+type OutputEvents = OutputEvent<BooksEntity>;
 
 @Component({
   selector: 'app-book-manager',
@@ -21,6 +23,10 @@ export class BookManagerComponent implements OnInit {
     this.state.loadBooks();
   }
 
+  outHandler(event: OutputEvents) {
+    this.upsertBook(event.payload);
+  }
+
   toggleShowForm() {
     this.log.dummyStyledLog();
     this.state.toggleShowForm();
@@ -30,7 +36,7 @@ export class BookManagerComponent implements OnInit {
     this.state.setSelectedTab(tabNo);
   }
 
-  upsertBook(book: BooksEntity) {
+  private upsertBook(book: BooksEntity) {
     this.state.upsertBook(book);
   }
 
