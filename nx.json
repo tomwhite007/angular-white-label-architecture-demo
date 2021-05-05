@@ -17,7 +17,7 @@
   },
   "projects": {
     "gyrus-ui-io-bus": { "tags": [] },
-    "bus-demo": { "tags": [] },
+    "bus-demo": { "tags": ["scope:bus", "type:app"] },
     "bus-demo-e2e": { "tags": [], "implicitDependencies": ["bus-demo"] },
     "without-bus-demo": { "tags": ["scope:without", "type:app"] },
     "without-bus-demo-e2e": {
