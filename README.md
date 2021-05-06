@@ -20,8 +20,14 @@ Experiment into using @Input and @Output as a bus to reduce template footprint a
   - callback array
   - update observable
   - throw if no callback unless update observable is set
+- inputBus handler
+  - Cache input events until all required ones arrive and then call their handlers in a specific order
+  - Allow unlisted events to bypass cache and call handler or throw no handler error immediately
 - Logger
   - Styled console logs
+  - Log filter at module or container component level
+  - Highlight log events instead of filter
+  - logging on by default in non-prod mode
 - RxJs operators
   - filter events
   - stream logger

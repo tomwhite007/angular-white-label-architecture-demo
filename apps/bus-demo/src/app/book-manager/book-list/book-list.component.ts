@@ -18,11 +18,16 @@ export class BookListComponent {
   @Input() selectedId: string;
 
   @Output() selectBook = new EventEmitter<string>();
+  @Output() clearSelectedBook = new EventEmitter();
 
   handleClick(index: number) {
     const id =
       this.selectedId === this.books[index].id ? null : this.books[index].id;
     this.selectBook.emit(id);
+  }
+
+  clearSelected() {
+    this.clearSelectedBook.emit();
   }
 
   trackByFn(index: number, item: BooksEntity) {
