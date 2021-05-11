@@ -5,7 +5,15 @@ import {
   Input,
   Output,
 } from '@angular/core';
+import { outputEvent, OutputEvent } from '@gyrus/ui-io-bus';
 import { BooksEntity } from '../../+state/books.models';
+import { OutputEventNames } from '../../_shared/interfaces/bus-event-names.interface';
+
+export type BookListSelectBookEvent = OutputEvent<string>;
+export type BookListClearSelectedBookEvent = OutputEvent<null>;
+export type BookListOutEvents =
+  | BookListSelectBookEvent
+  | BookListClearSelectedBookEvent;
 
 @Component({
   selector: 'app-book-list',
@@ -17,17 +25,20 @@ export class BookListComponent {
   @Input() books: BooksEntity[];
   @Input() selectedId: string;
 
-  @Output() selectBook = new EventEmitter<string>();
-  @Output() clearSelectedBook = new EventEmitter();
+  @Output() outBus: EventEmitter<BookListOutEvents> = new EventEmitter();
 
   handleClick(index: number) {
     const id =
       this.selectedId === this.books[index].id ? null : this.books[index].id;
-    this.selectBook.emit(id);
+    this.outBus.emit(
+      outputEvent<string>(OutputEventNames.BookListSelectBook, id)
+    );
   }
 
   clearSelected() {
-    this.clearSelectedBook.emit();
+    this.outBus.emit(
+      outputEvent<null>(OutputEventNames.BookListClearSelectedBook, null)
+    );
   }
 
   trackByFn(index: number, item: BooksEntity) {

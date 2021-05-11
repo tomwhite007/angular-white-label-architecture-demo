@@ -6,8 +6,8 @@
   <section class="mt-5 mb-5">
     <app-show-form-checkbox
       [checked]="vm.showForm"
-      (changed)="toggleShowForm()"
       [updateMode]="!!vm.selectedId"
+      (outBus)="outHandler($event)"
     ></app-show-form-checkbox>
 
     <app-add-book-form
@@ -19,15 +19,14 @@
 
   <app-tabs
     [selectedTab]="vm.selectedTab"
-    (tabSelected)="selectTab($event)"
+    (outBus)="outHandler($event)"
     [ngSwitch]="vm.selectedTab"
   >
     <app-book-list
       *ngSwitchCase="0"
       [books]="vm.allBooks"
       [selectedId]="vm.selectedId"
-      (selectBook)="selectBook($event)"
-      (clearSelectedBook)="clearSelectedBook()"
+      (outBus)="outHandler($event)"
     ></app-book-list>
 
     <app-book-stuff *ngSwitchCase="1"></app-book-stuff>

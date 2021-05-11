@@ -1,9 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { OutputEvent, UiIoBusLoggerService } from '@gyrus/ui-io-bus';
+import { UiIoBusLoggerService } from '@gyrus/ui-io-bus';
 import { BooksEntity } from '../+state/books.models';
+import { OutputEventNames } from '../_shared/interfaces/bus-event-names.interface';
+import { AddBookFormSubmitEvent } from './add-book-form/add-book-form.component';
+import { BookListOutEvents } from './book-list/book-list.component';
 import { BookManagerComponentStateService } from './book-manager-component-state.service';
+import { ShowFormCheckboxChangeEvent } from './show-form-checkbox/show-form-checkbox.component';
+import { TabsSelectTabEvent } from './tabs/tabs.component';
 
-type OutputEvents = OutputEvent<BooksEntity>;
+type OutputEvents =
+  | AddBookFormSubmitEvent
+  | BookListOutEvents
+  | ShowFormCheckboxChangeEvent
+  | TabsSelectTabEvent;
 
 @Component({
   selector: 'app-book-manager',
@@ -24,15 +33,31 @@ export class BookManagerComponent implements OnInit {
   }
 
   outHandler(event: OutputEvents) {
-    this.upsertBook(event.payload);
+    const handlerCaller = {
+      [OutputEventNames.AddBookFormSubmit]: this.upsertBook,
+      [OutputEventNames.BookListSelectBook]: this.selectBook,
+      [OutputEventNames.BookListClearSelectedBook]: this.clearSelectedBook,
+      [OutputEventNames.ShowFormCheckboxChange]: this.upsertBook,
+      [OutputEventNames.TabsSelectTab]: this.toggleShowForm,
+    };
+
+    try {
+      handlerCaller[event.name].bind(this)(event.payload);
+    } catch (err) {
+      console.log(err);
+
+      throw new Error(
+        'handlerCaller failed to find a handler for event: ' + event.name
+      );
+    }
   }
 
-  toggleShowForm() {
+  private toggleShowForm() {
     this.log.dummyStyledLog();
     this.state.toggleShowForm();
   }
 
-  selectTab(tabNo: number) {
+  private selectTab(tabNo: number) {
     this.state.setSelectedTab(tabNo);
   }
 
@@ -40,11 +65,11 @@ export class BookManagerComponent implements OnInit {
     this.state.upsertBook(book);
   }
 
-  selectBook(id: string) {
+  private selectBook(id: string) {
     this.state.selectBook(id);
   }
 
-  clearSelectedBook() {
+  private clearSelectedBook() {
     this.state.selectBook(null);
   }
 }
