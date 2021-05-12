@@ -21,6 +21,7 @@ Experiment into using @Input and @Output as a bus to reduce template footprint a
   - update observable
   - throw if no callback unless update observable is set
 - inputBus handler
+  - Confirm uncached input events that arrive sequentially only trigger one repaint of the component
   - Cache input events until all required ones arrive and then call their handlers in a specific order
   - Allow unlisted events to bypass cache and call handler or throw no handler error immediately
 - Logger
