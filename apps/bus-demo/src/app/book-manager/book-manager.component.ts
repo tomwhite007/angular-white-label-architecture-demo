@@ -40,14 +40,13 @@ export class BookManagerComponent implements OnInit {
         [OutputEventNames.BookListSelectBook]: this.selectBook,
         [OutputEventNames.BookListClearSelectedBook]: this.clearSelectedBook,
         [OutputEventNames.ShowFormCheckboxChange]: this.toggleShowForm,
-        // [OutputEventNames.TabsSelectTab]: this.selectTab,
+        [OutputEventNames.TabsSelectTab]: this.selectTab,
       },
       this
     );
   }
 
   private toggleShowForm() {
-    this.log.dummyStyledLog();
     this.state.toggleShowForm();
   }
 
