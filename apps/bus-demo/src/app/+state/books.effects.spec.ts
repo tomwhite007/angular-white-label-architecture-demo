@@ -10,7 +10,7 @@ import { hot } from '@nrwl/angular/testing';
 
 import { BooksEffects } from './books.effects';
 import * as BooksActions from './books.actions';
-import { BooksApiService } from '../_shared/books-api.service';
+import { BooksApiService } from '../_shared/services/books-api.service';
 import { Action } from '@ngrx/store';
 
 describe('BooksEffects', () => {

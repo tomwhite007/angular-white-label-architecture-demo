@@ -6,7 +6,11 @@ import {
   Output,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { outputEvent, OutputEvent } from '@gyrus/ui-io-bus';
 import { BooksEntity } from '../../+state/books.models';
+import { OutputEventNames } from '../../_shared/interfaces/bus-event-names.interface';
+
+export type AddBookFormSubmitEvent = OutputEvent<BooksEntity>;
 
 @Component({
   selector: 'app-add-book-form',
@@ -27,7 +31,7 @@ export class AddBookFormComponent {
       this.formGroup.controls.id.enable();
     }
   }
-  @Output() submittedBook: EventEmitter<BooksEntity> = new EventEmitter();
+  @Output() outBus: EventEmitter<AddBookFormSubmitEvent> = new EventEmitter();
 
   formGroup = new FormGroup({
     id: new FormControl(''),
@@ -37,6 +41,11 @@ export class AddBookFormComponent {
   buttonText = 'Add book';
 
   submit() {
-    this.submittedBook.emit(this.formGroup.getRawValue());
+    this.outBus.emit(
+      outputEvent<BooksEntity>(
+        OutputEventNames.AddBookFormSubmit,
+        this.formGroup.getRawValue()
+      )
+    );
   }
 }

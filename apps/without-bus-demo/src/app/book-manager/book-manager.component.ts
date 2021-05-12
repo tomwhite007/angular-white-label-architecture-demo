@@ -37,4 +37,8 @@ export class BookManagerComponent implements OnInit {
   selectBook(id: string) {
     this.state.selectBook(id);
   }
+
+  clearSelectedBook() {
+    this.state.selectBook(null);
+  }
 }

@@ -1,7 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { UiIoBusLoggerService } from '@gyrus/ui-io-bus';
+import { outputEventHandler, UiIoBusLoggerService } from '@gyrus/ui-io-bus';
 import { BooksEntity } from '../+state/books.models';
+import { OutputEventNames } from '../_shared/interfaces/bus-event-names.interface';
+import { AddBookFormSubmitEvent } from './add-book-form/add-book-form.component';
+import { BookListOutEvents } from './book-list/book-list.component';
 import { BookManagerComponentStateService } from './book-manager-component-state.service';
+import { ShowFormCheckboxChangeEvent } from './show-form-checkbox/show-form-checkbox.component';
+import { TabsSelectTabEvent } from './tabs/tabs.component';
+
+type OutputEvents =
+  | AddBookFormSubmitEvent
+  | BookListOutEvents
+  | ShowFormCheckboxChangeEvent
+  | TabsSelectTabEvent;
 
 @Component({
   selector: 'app-book-manager',
@@ -21,20 +32,37 @@ export class BookManagerComponent implements OnInit {
     this.state.loadBooks();
   }
 
-  toggleShowForm() {
-    this.log.dummyStyledLog();
+  outHandler(event: OutputEvents) {
+    outputEventHandler(
+      event,
+      {
+        [OutputEventNames.AddBookFormSubmit]: this.upsertBook,
+        [OutputEventNames.BookListSelectBook]: this.selectBook,
+        [OutputEventNames.BookListClearSelectedBook]: this.clearSelectedBook,
+        [OutputEventNames.ShowFormCheckboxChange]: this.toggleShowForm,
+        [OutputEventNames.TabsSelectTab]: this.selectTab,
+      },
+      this
+    );
+  }
+
+  private toggleShowForm() {
     this.state.toggleShowForm();
   }
 
-  selectTab(tabNo: number) {
+  private selectTab(tabNo: number) {
     this.state.setSelectedTab(tabNo);
   }
 
-  upsertBook(book: BooksEntity) {
+  private upsertBook(book: BooksEntity) {
     this.state.upsertBook(book);
   }
 
-  selectBook(id: string) {
+  private selectBook(id: string) {
     this.state.selectBook(id);
+  }
+
+  private clearSelectedBook() {
+    this.state.selectBook(null);
   }
 }
