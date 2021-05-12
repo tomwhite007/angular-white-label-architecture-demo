@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UiIoBusLoggerService } from '@gyrus/ui-io-bus';
+import { outputEventHandler, UiIoBusLoggerService } from '@gyrus/ui-io-bus';
 import { BooksEntity } from '../+state/books.models';
 import { OutputEventNames } from '../_shared/interfaces/bus-event-names.interface';
 import { AddBookFormSubmitEvent } from './add-book-form/add-book-form.component';
@@ -33,23 +33,17 @@ export class BookManagerComponent implements OnInit {
   }
 
   outHandler(event: OutputEvents) {
-    const handlerCaller = {
-      [OutputEventNames.AddBookFormSubmit]: this.upsertBook,
-      [OutputEventNames.BookListSelectBook]: this.selectBook,
-      [OutputEventNames.BookListClearSelectedBook]: this.clearSelectedBook,
-      [OutputEventNames.ShowFormCheckboxChange]: this.toggleShowForm,
-      [OutputEventNames.TabsSelectTab]: this.selectTab,
-    };
-
-    try {
-      handlerCaller[event.name].bind(this)(event.payload);
-    } catch (err) {
-      console.log(err);
-
-      throw new Error(
-        'handlerCaller failed to find a handler for event: ' + event.name
-      );
-    }
+    outputEventHandler(
+      event,
+      {
+        [OutputEventNames.AddBookFormSubmit]: this.upsertBook,
+        [OutputEventNames.BookListSelectBook]: this.selectBook,
+        [OutputEventNames.BookListClearSelectedBook]: this.clearSelectedBook,
+        [OutputEventNames.ShowFormCheckboxChange]: this.toggleShowForm,
+        // [OutputEventNames.TabsSelectTab]: this.selectTab,
+      },
+      this
+    );
   }
 
   private toggleShowForm() {
