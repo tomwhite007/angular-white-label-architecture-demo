@@ -37,8 +37,8 @@ export class BookManagerComponent implements OnInit {
       [OutputEventNames.AddBookFormSubmit]: this.upsertBook,
       [OutputEventNames.BookListSelectBook]: this.selectBook,
       [OutputEventNames.BookListClearSelectedBook]: this.clearSelectedBook,
-      [OutputEventNames.ShowFormCheckboxChange]: this.upsertBook,
-      [OutputEventNames.TabsSelectTab]: this.toggleShowForm,
+      [OutputEventNames.ShowFormCheckboxChange]: this.toggleShowForm,
+      [OutputEventNames.TabsSelectTab]: this.selectTab,
     };
 
     try {
