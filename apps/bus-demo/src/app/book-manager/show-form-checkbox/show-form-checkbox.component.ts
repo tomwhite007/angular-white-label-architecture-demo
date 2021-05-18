@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { outputEvent, OutputEvent } from '@gyrus/ui-io-bus';
+import { outBusEmit, OutputEvent } from '@gyrus/ui-io-bus';
 import { OutputEventNames } from '../../_shared/interfaces/bus-event-names.interface';
 
 export type ShowFormCheckboxChangeEvent = OutputEvent<boolean>;
@@ -17,11 +17,10 @@ export class ShowFormCheckboxComponent {
 
   handleChange() {
     this.checked = !this.checked;
-    this.outBus.emit(
-      outputEvent<boolean>(
-        OutputEventNames.ShowFormCheckboxChange,
-        this.checked
-      )
+    outBusEmit<boolean>(
+      this.outBus,
+      OutputEventNames.ShowFormCheckboxChange,
+      this.checked
     );
   }
 }

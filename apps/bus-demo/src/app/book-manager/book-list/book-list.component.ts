@@ -5,7 +5,7 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { outputEvent, OutputEvent } from '@gyrus/ui-io-bus';
+import { outBusEmit, OutputEvent } from '@gyrus/ui-io-bus';
 import { BooksEntity } from '../../+state/books.models';
 import { OutputEventNames } from '../../_shared/interfaces/bus-event-names.interface';
 
@@ -30,14 +30,14 @@ export class BookListComponent {
   handleClick(index: number) {
     const id =
       this.selectedId === this.books[index].id ? null : this.books[index].id;
-    this.outBus.emit(
-      outputEvent<string>(OutputEventNames.BookListSelectBook, id)
-    );
+    outBusEmit<string>(this.outBus, OutputEventNames.BookListSelectBook, id);
   }
 
   clearSelected() {
-    this.outBus.emit(
-      outputEvent<null>(OutputEventNames.BookListClearSelectedBook, null)
+    outBusEmit<null>(
+      this.outBus,
+      OutputEventNames.BookListClearSelectedBook,
+      null
     );
   }
 

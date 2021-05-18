@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { outputEvent, OutputEvent } from '@gyrus/ui-io-bus';
+import { outBusEmit, OutputEvent } from '@gyrus/ui-io-bus';
 import { OutputEventNames } from '../../_shared/interfaces/bus-event-names.interface';
 
 export type TabsSelectTabEvent = OutputEvent<number>;
@@ -16,6 +16,6 @@ export class TabsComponent {
 
   selectTab(tab: number) {
     this.selectedTab = tab;
-    this.outBus.emit(outputEvent<number>(OutputEventNames.TabsSelectTab, tab));
+    outBusEmit<number>(this.outBus, OutputEventNames.TabsSelectTab, tab);
   }
 }

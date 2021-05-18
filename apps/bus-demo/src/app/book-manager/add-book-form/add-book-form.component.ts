@@ -6,7 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { outputEvent, OutputEvent } from '@gyrus/ui-io-bus';
+import { outBusEmit, OutputEvent } from '@gyrus/ui-io-bus';
 import { BooksEntity } from '../../+state/books.models';
 import { OutputEventNames } from '../../_shared/interfaces/bus-event-names.interface';
 
@@ -41,11 +41,10 @@ export class AddBookFormComponent {
   buttonText = 'Add book';
 
   submit() {
-    this.outBus.emit(
-      outputEvent<BooksEntity>(
-        OutputEventNames.AddBookFormSubmit,
-        this.formGroup.getRawValue()
-      )
+    outBusEmit<BooksEntity>(
+      this.outBus,
+      OutputEventNames.AddBookFormSubmit,
+      this.formGroup.getRawValue()
     );
   }
 }
