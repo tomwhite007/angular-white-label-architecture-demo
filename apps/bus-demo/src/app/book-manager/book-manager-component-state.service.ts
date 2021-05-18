@@ -4,6 +4,21 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { BooksFacade } from '../+state/books.facade';
 import { BooksEntity } from '../+state/books.models';
+import {
+  outputEventHandler,
+  OutputEventObserveableService,
+} from '@gyrus/ui-io-bus';
+import { AddBookFormSubmitEvent } from './add-book-form/add-book-form.component';
+import { BookListOutEvents } from './book-list/book-list.component';
+import { ShowFormCheckboxChangeEvent } from './show-form-checkbox/show-form-checkbox.component';
+import { TabsSelectTabEvent } from './tabs/tabs.component';
+import { OutputEventNames } from '../_shared/interfaces/bus-event-names.interface';
+
+export type OutputEvents =
+  | AddBookFormSubmitEvent
+  | BookListOutEvents
+  | ShowFormCheckboxChangeEvent
+  | TabsSelectTabEvent;
 
 interface LocalState {
   showForm: boolean;
@@ -33,11 +48,19 @@ export class BookManagerComponentStateService extends ComponentStore<LocalState>
 
   readonly selectedTab$ = this.select((state) => state.selectedTab);
 
-  constructor(private books: BooksFacade) {
+  constructor(
+    private books: BooksFacade,
+    private outputService: OutputEventObserveableService<OutputEvents>
+  ) {
     super({
       showForm: false,
       selectedTab: 0,
     });
+  }
+
+  // proxy outputEventToObservable
+  outputEventToObservable(event: OutputEvents) {
+    this.outputService.outputEventToObservable(event);
   }
 
   // Updaters
@@ -53,6 +76,27 @@ export class BookManagerComponentStateService extends ComponentStore<LocalState>
   }));
 
   // Effects
+
+  readonly handleOutputEvents = this.effect(
+    (event$: Observable<OutputEvents>) => {
+      return event$.pipe(
+        tap((event: OutputEvents) => {
+          outputEventHandler(
+            event,
+            {
+              [OutputEventNames.AddBookFormSubmit]: this.upsertBook,
+              [OutputEventNames.BookListSelectBook]: this.selectBook,
+              [OutputEventNames.BookListClearSelectedBook]: this
+                .clearSelectedBook,
+              [OutputEventNames.ShowFormCheckboxChange]: this.toggleShowForm,
+              [OutputEventNames.TabsSelectTab]: this.setSelectedTab,
+            },
+            this
+          );
+        })
+      );
+    }
+  )(this.outputService.outBus$);
 
   readonly updateGoogleAnalyticsWithTabSelected = this.effect(
     (selectedTab$: Observable<number>) => {
@@ -71,17 +115,23 @@ export class BookManagerComponentStateService extends ComponentStore<LocalState>
     }
   )(this.selectedTab$);
 
-  // Global state
+  // Update Global state
 
   loadBooks() {
     this.books.loadBooks();
   }
 
-  upsertBook(book: BooksEntity) {
+  private upsertBook(book: BooksEntity) {
     this.books.upsertBook(book);
   }
 
-  selectBook(id: string) {
+  private selectBook(id: string) {
     this.books.selectBook(id);
+  }
+
+  // Imperative local state proxy functions
+
+  private clearSelectedBook() {
+    this.selectBook(null);
   }
 }

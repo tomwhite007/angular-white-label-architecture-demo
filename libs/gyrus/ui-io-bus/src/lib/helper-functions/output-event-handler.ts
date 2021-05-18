@@ -37,7 +37,7 @@ export function outputEventHandler(
 }
 
 /**
- * Helper Class to convert OutputEvents to an Observable
+ * Helper Service to convert OutputEvents to an Observable
  */
 @Injectable()
 export class OutputEventObserveableService<T extends OutputEvent<unknown>> {
@@ -49,24 +49,10 @@ export class OutputEventObserveableService<T extends OutputEvent<unknown>> {
   outBus$ = this._outBus$.asObservable();
 
   /**
-   * UI IO Bus Output Event handler helper.
    * Adds OutputEvents to outBus$ Observable.
-   * Calls custom handler from handlerLookup if supplied.
    * @param event OutputEvent object
-   * @param handlerLookup Key based lookup object with handler functions as properties
-   * @param bindThis Required (if handlerLookup is supplied) - 'this' context of Component so that functions in handlerLookup are accessible
-   * @param ignoreMissing Default true, but can set to false if handlerLookup should contain all events.
    */
-  outputEventHandler(
-    event: T,
-    handlerLookup?: HandlerLookup,
-    bindThis?: unknown,
-    ignoreMissing = true
-  ) {
+  outputEventToObservable(event: T) {
     this._outBus$.next(event);
-
-    if (handlerLookup) {
-      outputEventHandler(event, handlerLookup, bindThis, ignoreMissing);
-    }
   }
 }
