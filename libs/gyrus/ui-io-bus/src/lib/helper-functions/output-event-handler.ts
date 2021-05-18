@@ -1,5 +1,10 @@
+import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { OutputEvent } from '../interfaces/public.interface';
+
+interface HandlerLookup {
+  [eventName: string]: (payload: unknown) => void;
+}
 
 /**
  * UI IO Bus Output Event handler helper.
@@ -11,7 +16,7 @@ import { OutputEvent } from '../interfaces/public.interface';
  */
 export function outputEventHandler(
   event: OutputEvent<unknown>,
-  handlerLookup: { [eventName: string]: (payload: unknown) => void },
+  handlerLookup: HandlerLookup,
   bindThis: unknown,
   ignoreMissing = false
 ) {
@@ -34,7 +39,8 @@ export function outputEventHandler(
 /**
  * Helper Class to convert OutputEvents to an Observable
  */
-export class OutputEventObserveable<T extends OutputEvent<unknown>> {
+@Injectable()
+export class OutputEventObserveableService<T extends OutputEvent<unknown>> {
   private _outBus$: Subject<T> = new Subject();
 
   /**
@@ -53,7 +59,7 @@ export class OutputEventObserveable<T extends OutputEvent<unknown>> {
    */
   outputEventHandler(
     event: T,
-    handlerLookup?: { [eventName: string]: (payload: unknown) => void },
+    handlerLookup?: HandlerLookup,
     bindThis?: unknown,
     ignoreMissing = true
   ) {
