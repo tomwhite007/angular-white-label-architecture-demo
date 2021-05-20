@@ -4,9 +4,12 @@ Experiment into using @Input and @Output as a bus to reduce template footprint a
 
 ## Todo
 
-1. Add readme comments
-2. Create marbles tests on Component Store repo
-3. Add unit tests to lib
+Finish observable filter to select Output Events and then refactor to use direct effects / updaters
+use extends OutputEvent<unknown> to give better descrition to types on outputEvent()
+
+Add readme comments
+Create marbles tests on Component Store repo
+Add unit tests to lib
 
 ## Ideas
 
