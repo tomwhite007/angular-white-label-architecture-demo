@@ -6,7 +6,7 @@ import { BooksFacade } from '../+state/books.facade';
 import { BooksEntity } from '../+state/books.models';
 import {
   outputEventHandler,
-  OutputEventObserveableService,
+  OutputEventObservableService,
 } from '@gyrus/ui-io-bus';
 import { AddBookFormSubmitEvent } from './add-book-form/add-book-form.component';
 import { BookListOutEvents } from './book-list/book-list.component';
@@ -50,7 +50,7 @@ export class BookManagerComponentStateService extends ComponentStore<LocalState>
 
   constructor(
     private books: BooksFacade,
-    private outputService: OutputEventObserveableService<OutputEvents>
+    private outputService: OutputEventObservableService<OutputEvents>
   ) {
     super({
       showForm: false,

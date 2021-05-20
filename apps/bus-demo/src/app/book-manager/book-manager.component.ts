@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OutputEventObserveableService } from '@gyrus/ui-io-bus';
+import { OutputEventObservableService } from '@gyrus/ui-io-bus';
 import {
   BookManagerComponentStateService,
   OutputEvents,
@@ -9,7 +9,7 @@ import {
   selector: 'app-book-manager',
   templateUrl: './book-manager.component.html',
   styleUrls: ['./book-manager.component.scss'],
-  providers: [BookManagerComponentStateService, OutputEventObserveableService],
+  providers: [BookManagerComponentStateService, OutputEventObservableService],
 })
 export class BookManagerComponent implements OnInit {
   vm$ = this.state.vm$;
