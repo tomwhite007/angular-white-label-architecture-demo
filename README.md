@@ -4,9 +4,12 @@ Experiment into using @Input and @Output as a bus to reduce template footprint a
 
 ## Todo
 
-1. Add readme comments
-2. Create marbles tests on Component Store repo
-3. Add unit tests to lib
+use extends OutputEvent<unknown> to give better descrition to types on outputEvent()
+Try typing OutputEvent so that the name is defined as well
+
+Add readme comments
+Create marbles tests on Component Store repo
+Add unit tests to lib
 
 ## Ideas
 
@@ -19,7 +22,7 @@ Experiment into using @Input and @Output as a bus to reduce template footprint a
   - [ ] throw if no callback
 - outputsBus handler
   - [x] callback array
-  - [ ] update observable as separate helper
+  - [x] update observable as separate helper
   - [x] throw if no callback unless update observable is set
 - inputBus handler
   - [ ] Confirm uncached input events that arrive sequentially only trigger one repaint of the component
@@ -31,7 +34,7 @@ Experiment into using @Input and @Output as a bus to reduce template footprint a
   - [ ] Highlight log events instead of filter
   - [ ] logging on by default in non-prod mode
 - RxJs operators
-  - [ ] filter events
+  - [x] filter events
   - [ ] stream logger
 - [ ] Filter in container
 - [ ] Filter in presenter component
