@@ -102,9 +102,7 @@ export class BookManagerComponentStateService extends ComponentStore<LocalState>
   )(
     outputEventSelector(
       this.outputService.outBus$,
-      OutputEventNames.AddBookFormSubmit,
-      // BookListClearSelectedBook can use this effect because it sends a null payload
-      OutputEventNames.BookListClearSelectedBook
+      OutputEventNames.AddBookFormSubmit
     )
   );
 
@@ -119,7 +117,9 @@ export class BookManagerComponentStateService extends ComponentStore<LocalState>
   )(
     outputEventSelector(
       this.outputService.outBus$,
-      OutputEventNames.BookListSelectBook
+      OutputEventNames.BookListSelectBook,
+      // BookListClearSelectedBook can use this effect because it sends a null payload
+      OutputEventNames.BookListClearSelectedBook
     )
   );
 
