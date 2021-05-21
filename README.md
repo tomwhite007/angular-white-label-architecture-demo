@@ -4,7 +4,6 @@ Experiment into using @Input and @Output as a bus to reduce template footprint a
 
 ## Todo
 
-Finish observable filter to select Output Events and then refactor to use direct effects / updaters
 use extends OutputEvent<unknown> to give better descrition to types on outputEvent()
 Try typing OutputEvent so that the name is defined as well
 
