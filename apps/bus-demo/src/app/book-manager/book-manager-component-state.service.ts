@@ -3,13 +3,15 @@ import { ComponentStore } from '@ngrx/component-store';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { BooksFacade } from '../+state/books.facade';
-import { BooksEntity } from '../+state/books.models';
 import {
-  outputEventHandler,
   OutputEventObservableService,
+  outputEventSelector,
 } from '@gyrus/ui-io-bus';
 import { AddBookFormSubmitEvent } from './add-book-form/add-book-form.component';
-import { BookListOutEvents } from './book-list/book-list.component';
+import {
+  BookListOutEvents,
+  BookListSelectBookEvent,
+} from './book-list/book-list.component';
 import { ShowFormCheckboxChangeEvent } from './show-form-checkbox/show-form-checkbox.component';
 import { TabsSelectTabEvent } from './tabs/tabs.component';
 import { OutputEventNames } from '../_shared/interfaces/bus-event-names.interface';
@@ -65,38 +67,61 @@ export class BookManagerComponentStateService extends ComponentStore<LocalState>
 
   // Updaters
 
-  readonly toggleShowForm = this.updater((state) => ({
+  readonly toggleShowForm = this.updater((state, event: unknown) => ({
     ...state,
     showForm: !state.showForm,
-  }));
+  }))(
+    outputEventSelector(
+      this.outputService.outBus$,
+      OutputEventNames.ShowFormCheckboxChange
+    )
+  );
 
-  readonly setSelectedTab = this.updater((state, tabNo: number) => ({
-    ...state,
-    selectedTab: tabNo,
-  }));
+  readonly setSelectedTab = this.updater(
+    (state, event: TabsSelectTabEvent) => ({
+      ...state,
+      selectedTab: event.payload,
+    })
+  )(
+    outputEventSelector(
+      this.outputService.outBus$,
+      OutputEventNames.TabsSelectTab
+    )
+  );
 
   // Effects
 
-  readonly handleOutputEvents = this.effect(
-    (event$: Observable<OutputEvents>) => {
+  readonly upsertBook = this.effect(
+    (event$: Observable<AddBookFormSubmitEvent>) => {
       return event$.pipe(
-        tap((event: OutputEvents) => {
-          outputEventHandler(
-            event,
-            {
-              [OutputEventNames.AddBookFormSubmit]: this.upsertBook,
-              [OutputEventNames.BookListSelectBook]: this.selectBook,
-              [OutputEventNames.BookListClearSelectedBook]: this
-                .clearSelectedBook,
-              [OutputEventNames.ShowFormCheckboxChange]: this.toggleShowForm,
-              [OutputEventNames.TabsSelectTab]: this.setSelectedTab,
-            },
-            this
-          );
+        tap((event: AddBookFormSubmitEvent) => {
+          this.books.upsertBook(event.payload);
         })
       );
     }
-  )(this.outputService.outBus$);
+  )(
+    outputEventSelector(
+      this.outputService.outBus$,
+      OutputEventNames.AddBookFormSubmit,
+      // BookListClearSelectedBook can use this effect because it sends a null payload
+      OutputEventNames.BookListClearSelectedBook
+    )
+  );
+
+  readonly selectBook = this.effect(
+    (event$: Observable<BookListSelectBookEvent>) => {
+      return event$.pipe(
+        tap((event: BookListSelectBookEvent) => {
+          this.books.selectBook(event.payload);
+        })
+      );
+    }
+  )(
+    outputEventSelector(
+      this.outputService.outBus$,
+      OutputEventNames.BookListSelectBook
+    )
+  );
 
   readonly updateGoogleAnalyticsWithTabSelected = this.effect(
     (selectedTab$: Observable<number>) => {
@@ -119,19 +144,5 @@ export class BookManagerComponentStateService extends ComponentStore<LocalState>
 
   loadBooks() {
     this.books.loadBooks();
-  }
-
-  private upsertBook(book: BooksEntity) {
-    this.books.upsertBook(book);
-  }
-
-  private selectBook(id: string) {
-    this.books.selectBook(id);
-  }
-
-  // Imperative local state proxy functions
-
-  private clearSelectedBook() {
-    this.selectBook(null);
   }
 }
