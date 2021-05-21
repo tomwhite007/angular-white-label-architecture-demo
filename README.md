@@ -34,7 +34,7 @@ Add unit tests to lib
   - [ ] Highlight log events instead of filter
   - [ ] logging on by default in non-prod mode
 - RxJs operators
-  - [ ] filter events
+  - [x] filter events
   - [ ] stream logger
 - [ ] Filter in container
 - [ ] Filter in presenter component
