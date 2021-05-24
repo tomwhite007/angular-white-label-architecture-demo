@@ -1,5 +1,5 @@
 import { EventEmitter } from '@angular/core';
-import { OutputEvent } from '../interfaces/public.interface';
+import { OutputEvent } from '../interfaces/output-event.interface';
 import { dateTimeStamp } from './date-stamp';
 
 /**

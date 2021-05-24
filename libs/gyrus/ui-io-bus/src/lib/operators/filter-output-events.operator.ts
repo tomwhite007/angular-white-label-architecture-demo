@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { MonoTypeOperatorFunction, Observable } from 'rxjs';
 import { distinctUntilChanged, filter } from 'rxjs/operators';
-import { OutputEvent } from '../interfaces/public.interface';
+import { OutputEvent } from '../interfaces/output-event.interface';
 
 export const filterOutputEvents = (
   ...eventNames: string[]

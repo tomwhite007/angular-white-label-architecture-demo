@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { OutputEvent } from '../interfaces/public.interface';
+import { OutputEvent } from '../interfaces/output-event.interface';
 
 interface HandlerLookup {
   [eventName: string]: (payload: unknown) => void;
