@@ -32,21 +32,23 @@ export class AddBookFormComponent {
     if (event.name === InputEventNames.AddBookShowForm) {
       this.showForm = <boolean>event.payload;
     }
+
+    if (event.name === InputEventNames.AddBookSelectedBook) {
+      const book = <BooksEntity | null>event.payload;
+      if (book) {
+        this.formGroup.setValue(book);
+        this.buttonText = 'Update book';
+        this.formGroup.controls.id.disable();
+      } else {
+        this.formGroup.reset();
+        this.buttonText = 'Add book';
+        this.formGroup.controls.id.enable();
+      }
+    }
   }
 
   showForm: boolean;
 
-  @Input() set selectedBook(book: BooksEntity | null) {
-    if (book) {
-      this.formGroup.setValue(book);
-      this.buttonText = 'Update book';
-      this.formGroup.controls.id.disable();
-    } else {
-      this.formGroup.reset();
-      this.buttonText = 'Add book';
-      this.formGroup.controls.id.enable();
-    }
-  }
   @Output() outBus: EventEmitter<AddBookFormSubmitEvent> = new EventEmitter();
 
   formGroup = new FormGroup({

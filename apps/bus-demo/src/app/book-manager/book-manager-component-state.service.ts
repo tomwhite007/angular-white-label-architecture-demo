@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { createInputBusEvent } from '@gyrus/ui-io-bus';
 import { ComponentStore } from '@ngrx/component-store';
+import { merge } from 'rxjs';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { BooksFacade } from '../+state/books.facade';
 import { BooksEntity } from '../+state/books.models';
 import { InputEventNames } from '../_shared/interfaces/bus-event-names.interface';
-import { AddBookShowFormEvent } from './add-book-form/add-book-form.component';
+import {
+  AddBookSelectedBookEvent,
+  AddBookShowFormEvent,
+} from './add-book-form/add-book-form.component';
 
 interface LocalState {
   showForm: boolean;
@@ -21,10 +25,20 @@ declare global {
 
 @Injectable()
 export class BookManagerComponentStateService extends ComponentStore<LocalState> {
-  readonly addBookFormBus$ = this.select((state) =>
-    createInputBusEvent<AddBookShowFormEvent>(
-      InputEventNames.AddBookShowForm,
-      state.showForm
+  readonly addBookFormBus$ = merge(
+    this.select((state) =>
+      createInputBusEvent<AddBookShowFormEvent>(
+        InputEventNames.AddBookShowForm,
+        state.showForm
+      )
+    ),
+    this.books.selectedBook$.pipe(
+      map((selected) =>
+        createInputBusEvent<AddBookSelectedBookEvent>(
+          InputEventNames.AddBookSelectedBook,
+          selected
+        )
+      )
     )
   );
 

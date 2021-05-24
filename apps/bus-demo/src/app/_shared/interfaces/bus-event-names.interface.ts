@@ -8,4 +8,5 @@ export enum OutputEventNames {
 
 export enum InputEventNames {
   AddBookShowForm = 'AddBookFormComponent: Show Form',
+  AddBookSelectedBook = 'AddBookFormComponent: Selected Book',
 }

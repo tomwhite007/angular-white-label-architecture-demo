@@ -4,6 +4,7 @@ Experiment into using @Input and @Output as a bus to reduce template footprint a
 
 ## Todo
 
+fix naming conventions
 use extends OutputEvent<unknown> to give better descrition to types on outputEvent()
 Try typing OutputEvent so that the name is defined as well
 
