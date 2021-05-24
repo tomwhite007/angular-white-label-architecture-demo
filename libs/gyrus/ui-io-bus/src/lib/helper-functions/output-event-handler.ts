@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { OutputEvent } from '../interfaces/output-event.interface';
+import { OutputBusEvent } from '../interfaces/output-bus-event.interface';
 
 interface HandlerLookup {
   [eventName: string]: (payload: unknown) => void;
@@ -15,7 +15,7 @@ interface HandlerLookup {
  * @param ignoreMissing Optionally allow unhandled events to pass through silently
  */
 export function outputEventHandler(
-  event: OutputEvent<unknown>,
+  event: OutputBusEvent<unknown>,
   handlerLookup: HandlerLookup,
   bindThis: unknown,
   ignoreMissing = false

@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { OutputEvent } from '../interfaces/output-event.interface';
+import { OutputEvent } from '../interfaces/output-bus-event.interface';
 import { OutputEventObservableService } from './output-event-observable.service';
 
 describe('OutputEventObservableService', () => {

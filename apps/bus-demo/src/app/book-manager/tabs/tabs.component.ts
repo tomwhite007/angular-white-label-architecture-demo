@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { outBusEmit, OutputEvent } from '@gyrus/ui-io-bus';
+import { outBusEmit, OutputBusEvent } from '@gyrus/ui-io-bus';
 import { OutputEventNames } from '../../_shared/interfaces/bus-event-names.interface';
 
-export type TabsSelectTabEvent = OutputEvent<number>;
+export type TabsSelectTabEvent = OutputBusEvent<number>;
 
 @Component({
   selector: 'app-tabs',

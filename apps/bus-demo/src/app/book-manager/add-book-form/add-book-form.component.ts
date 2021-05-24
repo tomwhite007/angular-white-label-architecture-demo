@@ -6,11 +6,17 @@ import {
   Output,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { outBusEmit, OutputEvent } from '@gyrus/ui-io-bus';
+import { InputBusEvent, outBusEmit, OutputBusEvent } from '@gyrus/ui-io-bus';
 import { BooksEntity } from '../../+state/books.models';
 import { OutputEventNames } from '../../_shared/interfaces/bus-event-names.interface';
 
-export type AddBookFormSubmitEvent = OutputEvent<BooksEntity>;
+export type AddBookFormSubmitEvent = OutputBusEvent<BooksEntity>;
+
+export type AddBookShowFormEvent = InputBusEvent<boolean>;
+export type AddBookSelectedBookEvent = InputBusEvent<BooksEntity | null>;
+export type AddBookInputEvents =
+  | AddBookShowFormEvent
+  | AddBookSelectedBookEvent;
 
 @Component({
   selector: 'app-add-book-form',
@@ -19,6 +25,8 @@ export type AddBookFormSubmitEvent = OutputEvent<BooksEntity>;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddBookFormComponent {
+  @Input() inBus: AddBookInputEvents;
+
   @Input() showForm: boolean;
   @Input() set selectedBook(book: BooksEntity | null) {
     if (book) {

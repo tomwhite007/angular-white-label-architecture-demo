@@ -1,7 +1,7 @@
 /**
  * UI IO Bus OutputEvent with subtyped payload
  */
-export type OutputEvent<T> = {
+export type InputBusEvent<T> = {
   /**
    * name - recommended format: '[Component Name]: [Output Type]'
    */

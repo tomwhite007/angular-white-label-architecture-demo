@@ -1,5 +1,5 @@
 import { EventEmitter } from '@angular/core';
-import { OutputEvent } from '../interfaces/output-event.interface';
+import { OutputBusEvent } from '../interfaces/output-bus-event.interface';
 import { dateTimeStamp } from './date-stamp';
 
 /**
@@ -10,7 +10,7 @@ import { dateTimeStamp } from './date-stamp';
  * @param group - name for group filtering of events
  */
 export function outBusEmit<T>(
-  outBusRef: EventEmitter<OutputEvent<unknown>>,
+  outBusRef: EventEmitter<OutputBusEvent<unknown>>,
   name: string,
   payload: T,
   group?: string
