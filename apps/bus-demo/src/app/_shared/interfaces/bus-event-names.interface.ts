@@ -5,3 +5,7 @@ export enum OutputEventNames {
   ShowFormCheckboxChange = 'ShowFormCheckboxComponent: Checkbox Change',
   TabsSelectTab = 'TabsComponent: Select Tab',
 }
+
+export enum InputEventNames {
+  AddBookShowForm = 'AddBookFormComponent: Show Form',
+}

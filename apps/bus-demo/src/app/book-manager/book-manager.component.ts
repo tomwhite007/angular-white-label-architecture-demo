@@ -22,6 +22,7 @@ type OutputEvents =
 })
 export class BookManagerComponent implements OnInit {
   vm$ = this.state.vm$;
+  addBookFormBus$ = this.state.addBookFormBus$;
 
   constructor(
     private state: BookManagerComponentStateService,

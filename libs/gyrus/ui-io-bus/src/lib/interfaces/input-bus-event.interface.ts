@@ -1,5 +1,5 @@
 /**
- * UI IO Bus OutputEvent with subtyped payload
+ * UI IO Bus InputEvent with subtyped payload
  */
 export type InputBusEvent<T> = {
   /**

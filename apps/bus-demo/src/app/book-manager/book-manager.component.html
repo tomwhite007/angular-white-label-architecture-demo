@@ -11,7 +11,7 @@
     ></app-show-form-checkbox>
 
     <app-add-book-form
-      [showForm]="vm.showForm"
+      [inBus]="addBookFormBus$ | async"
       [selectedBook]="vm.selectedBook"
       (outBus)="outHandler($event)"
     ></app-add-book-form>
