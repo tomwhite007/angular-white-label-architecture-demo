@@ -42,15 +42,6 @@ export class BookManagerComponentStateService extends ComponentStore<LocalState>
     )
   );
 
-  readonly devaddBookFormBus$ = this.select(
-    this.select((state) => state),
-    this.books.selectedBook$,
-    (LocalState, selectedBook) => ({
-      ...LocalState,
-      selectedBook,
-    })
-  );
-
   readonly vm$ = this.select(
     this.select((state) => state),
     this.books.allBooks$,
