@@ -34,36 +34,32 @@ export class BookManagerComponent implements OnInit {
   }
 
   outHandler(event: OutputEvents) {
-    outputEventHandler(
-      event,
-      {
-        [OutputEventNames.AddBookFormSubmit]: this.upsertBook,
-        [OutputEventNames.BookListSelectBook]: this.selectBook,
-        [OutputEventNames.BookListClearSelectedBook]: this.clearSelectedBook,
-        [OutputEventNames.ShowFormCheckboxChange]: this.toggleShowForm,
-        [OutputEventNames.TabsSelectTab]: this.selectTab,
-      },
-      this
-    );
+    outputEventHandler(event, {
+      [OutputEventNames.AddBookFormSubmit]: this.upsertBook,
+      // [OutputEventNames.BookListSelectBook]: this.selectBook,
+      [OutputEventNames.BookListClearSelectedBook]: this.clearSelectedBook,
+      [OutputEventNames.ShowFormCheckboxChange]: this.toggleShowForm,
+      [OutputEventNames.TabsSelectTab]: this.selectTab,
+    });
   }
 
-  private toggleShowForm() {
+  private toggleShowForm = () => {
     this.state.toggleShowForm();
-  }
+  };
 
-  private selectTab(tabNo: number) {
+  private selectTab = (tabNo: number) => {
     this.state.setSelectedTab(tabNo);
-  }
+  };
 
-  private upsertBook(book: BooksEntity) {
+  private upsertBook = (book: BooksEntity) => {
     this.state.upsertBook(book);
-  }
+  };
 
-  private selectBook(id: string) {
+  private selectBook = (id: string) => {
     this.state.selectBook(id);
-  }
+  };
 
-  private clearSelectedBook() {
+  private clearSelectedBook = () => {
     this.state.selectBook(null);
-  }
+  };
 }

@@ -8,22 +8,20 @@ interface HandlerLookup {
 
 /**
  * UI IO Bus Output Event handler helper.
- * Calls custom handler from lookup based on OutputEvent name.
+ * Calls custom handler callback from lookup based on OutputEvent name.
  * @param event OutputEvent object
  * @param handlerLookup Key based lookup object with handler functions as properties
- * @param bindThis Required 'this' context of Component so that functions in handlerLookup are accessible
  * @param ignoreMissing Optionally allow unhandled events to pass through silently
  */
 export function outputEventHandler(
   event: OutputBusEvent<unknown>,
   handlerLookup: HandlerLookup,
-  bindThis: unknown,
   ignoreMissing = false
 ) {
   try {
-    handlerLookup[event.name].bind(bindThis)(event.payload);
+    handlerLookup[event.name](event.payload);
   } catch (err) {
-    if (err.message === `Cannot read property 'bind' of undefined`) {
+    if (err.message === `handlerLookup[event.name] is not a function`) {
       if (!ignoreMissing) {
         throw new Error(
           'Output Event Handler lookup has no handler for event name: ' +
