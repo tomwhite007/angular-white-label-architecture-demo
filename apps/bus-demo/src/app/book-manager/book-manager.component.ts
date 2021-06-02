@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { outputEventHandler, UiIoBusLoggerService } from '@gyrus/ui-io-bus';
+import { busEventHandler, UiIoBusLoggerService } from '@gyrus/ui-io-bus';
 import { BooksEntity } from '../+state/books.models';
 import { OutputEventNames } from '../_shared/interfaces/bus-event-names.interface';
 import { AddBookFormSubmitEvent } from './add-book-form/add-book-form.component';
@@ -34,9 +34,9 @@ export class BookManagerComponent implements OnInit {
   }
 
   outHandler(event: OutputEvents) {
-    outputEventHandler(event, {
+    busEventHandler(event, {
       [OutputEventNames.AddBookFormSubmit]: this.upsertBook,
-      // [OutputEventNames.BookListSelectBook]: this.selectBook,
+      [OutputEventNames.BookListSelectBook]: this.selectBook,
       [OutputEventNames.BookListClearSelectedBook]: this.clearSelectedBook,
       [OutputEventNames.ShowFormCheckboxChange]: this.toggleShowForm,
       [OutputEventNames.TabsSelectTab]: this.selectTab,

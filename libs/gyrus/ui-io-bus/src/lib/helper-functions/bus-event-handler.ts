@@ -1,5 +1,4 @@
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { InputBusEvent } from '../interfaces/input-bus-event.interface';
 import { OutputBusEvent } from '../interfaces/output-bus-event.interface';
 
 interface HandlerLookup {
@@ -7,14 +6,14 @@ interface HandlerLookup {
 }
 
 /**
- * UI IO Bus Output Event handler helper.
- * Calls custom handler callback from lookup based on OutputEvent name.
- * @param event OutputEvent object
+ * UI IO Bus Event handler helper.
+ * Calls custom handler callback from lookup based on bus event name.
+ * @param event bus event object
  * @param handlerLookup Key based lookup object with handler functions as properties
  * @param ignoreMissing Optionally allow unhandled events to pass through silently
  */
-export function outputEventHandler(
-  event: OutputBusEvent<unknown>,
+export function busEventHandler(
+  event: OutputBusEvent<unknown> | InputBusEvent<unknown>,
   handlerLookup: HandlerLookup,
   ignoreMissing = false
 ) {
@@ -24,7 +23,7 @@ export function outputEventHandler(
     if (err.message === `handlerLookup[event.name] is not a function`) {
       if (!ignoreMissing) {
         throw new Error(
-          'Output Event Handler lookup has no handler for event name: ' +
+          'Bus Event Handler lookup has no handler for event name: ' +
             event.name
         );
       }
