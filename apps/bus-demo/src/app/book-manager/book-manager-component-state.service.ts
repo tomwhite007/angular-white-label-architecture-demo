@@ -3,7 +3,7 @@ import { createInputBusEvent } from '@gyrus/ui-io-bus';
 import { ComponentStore } from '@ngrx/component-store';
 import { merge } from 'rxjs';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { distinctUntilChanged, map, tap } from 'rxjs/operators';
 import { BooksFacade } from '../+state/books.facade';
 import { BooksEntity } from '../+state/books.models';
 import { InputEventNames } from '../_shared/interfaces/bus-event-names.interface';
@@ -11,6 +11,10 @@ import {
   AddBookSelectedBookEvent,
   AddBookShowFormEvent,
 } from './add-book-form/add-book-form.component';
+import {
+  BookListBooksEvent,
+  BookListSelectedIdEvent,
+} from './book-list/book-list.component';
 
 interface LocalState {
   showForm: boolean;
@@ -26,10 +30,12 @@ declare global {
 @Injectable()
 export class BookManagerComponentStateService extends ComponentStore<LocalState> {
   readonly addBookFormBus$ = merge(
-    this.select((state) =>
-      createInputBusEvent<AddBookShowFormEvent>(
-        InputEventNames.AddBookShowForm,
-        state.showForm
+    this.select((state) => state.showForm).pipe(
+      map((showForm) =>
+        createInputBusEvent<AddBookShowFormEvent>(
+          InputEventNames.AddBookShowForm,
+          showForm
+        )
       )
     ),
     this.books.selectedBook$.pipe(
@@ -37,6 +43,25 @@ export class BookManagerComponentStateService extends ComponentStore<LocalState>
         createInputBusEvent<AddBookSelectedBookEvent>(
           InputEventNames.AddBookSelectedBook,
           selected
+        )
+      )
+    )
+  );
+
+  readonly bookListBus$ = merge(
+    this.books.allBooks$.pipe(
+      map((books) =>
+        createInputBusEvent<BookListBooksEvent>(
+          InputEventNames.BookListBooks,
+          books
+        )
+      )
+    ),
+    this.books.selectedId$.pipe(
+      map((id) =>
+        createInputBusEvent<BookListSelectedIdEvent>(
+          InputEventNames.BookListSelectedId,
+          id
         )
       )
     )

@@ -17,6 +17,8 @@ Add unit tests to lib
 - Event Object - Class or Interface
   - [ ] Event defs like actions?
   - [ ] How else to strongly type?
+- Packer for
+  - [ ] inputsBus$ events
 - Unpacker for
   - [ ] inputsBus$
   - [ ] inputsBus - no stream

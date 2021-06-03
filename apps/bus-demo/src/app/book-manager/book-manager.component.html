@@ -23,8 +23,7 @@
   >
     <app-book-list
       *ngSwitchCase="0"
-      [books]="vm.allBooks"
-      [selectedId]="vm.selectedId"
+      [inBus]="bookListBus$ | async"
       (outBus)="outHandler($event)"
     ></app-book-list>
 
