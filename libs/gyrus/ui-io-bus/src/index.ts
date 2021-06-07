@@ -8,3 +8,4 @@ export * from './lib/helper-functions/out-bus-emit';
 export * from './lib/helper-functions/bus-event-handler';
 export * from './lib/helper-functions/output-event-selector';
 export * from './lib/helper-functions/create-input-event';
+export * from './lib/helper-functions/create-bus';

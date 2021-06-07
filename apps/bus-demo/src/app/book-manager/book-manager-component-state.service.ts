@@ -1,20 +1,13 @@
 import { Injectable } from '@angular/core';
-import { createInputBusEvent } from '@gyrus/ui-io-bus';
+import { createBus } from '@gyrus/ui-io-bus';
 import { ComponentStore } from '@ngrx/component-store';
-import { merge } from 'rxjs';
 import { Observable } from 'rxjs';
-import { distinctUntilChanged, map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { BooksFacade } from '../+state/books.facade';
 import { BooksEntity } from '../+state/books.models';
 import { InputEventNames } from '../_shared/interfaces/bus-event-names.interface';
-import {
-  AddBookSelectedBookEvent,
-  AddBookShowFormEvent,
-} from './add-book-form/add-book-form.component';
-import {
-  BookListBooksEvent,
-  BookListSelectedIdEvent,
-} from './book-list/book-list.component';
+import { AddBookInputEvents } from './add-book-form/add-book-form.component';
+import { BookListInputEvents } from './book-list/book-list.component';
 
 interface LocalState {
   showForm: boolean;
@@ -29,44 +22,6 @@ declare global {
 
 @Injectable()
 export class BookManagerComponentStateService extends ComponentStore<LocalState> {
-  readonly addBookFormBus$ = merge(
-    this.select((state) => state.showForm).pipe(
-      map((showForm) =>
-        createInputBusEvent<AddBookShowFormEvent>(
-          InputEventNames.AddBookShowForm,
-          showForm
-        )
-      )
-    ),
-    this.books.selectedBook$.pipe(
-      map((selected) =>
-        createInputBusEvent<AddBookSelectedBookEvent>(
-          InputEventNames.AddBookSelectedBook,
-          selected
-        )
-      )
-    )
-  );
-
-  readonly bookListBus$ = merge(
-    this.books.allBooks$.pipe(
-      map((books) =>
-        createInputBusEvent<BookListBooksEvent>(
-          InputEventNames.BookListBooks,
-          books
-        )
-      )
-    ),
-    this.books.selectedId$.pipe(
-      map((id) =>
-        createInputBusEvent<BookListSelectedIdEvent>(
-          InputEventNames.BookListSelectedId,
-          id
-        )
-      )
-    )
-  );
-
   readonly vm$ = this.select(
     this.select((state) => state),
     this.books.allBooks$,
@@ -133,4 +88,28 @@ export class BookManagerComponentStateService extends ComponentStore<LocalState>
   selectBook(id: string) {
     this.books.selectBook(id);
   }
+
+  // Input Buses
+
+  readonly addBookFormBus$ = createBus<AddBookInputEvents>(
+    {
+      name: InputEventNames.AddBookShowForm,
+      payload$: this.select((state) => state.showForm),
+    },
+    {
+      name: InputEventNames.AddBookSelectedBook,
+      payload$: this.books.selectedBook$,
+    }
+  );
+
+  readonly bookListBus$ = createBus<BookListInputEvents>(
+    {
+      name: InputEventNames.BookListBooks,
+      payload$: this.books.allBooks$,
+    },
+    {
+      name: InputEventNames.BookListSelectedId,
+      payload$: this.books.selectedId$,
+    }
+  );
 }
