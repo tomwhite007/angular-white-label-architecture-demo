@@ -5,8 +5,7 @@
 <main *ngIf="vm$ | async as vm">
   <section class="mt-5 mb-5">
     <app-show-form-checkbox
-      [checked]="vm.showForm"
-      [updateMode]="!!vm.selectedId"
+      [inBus]="showFormCheckboxBus$ | async"
       (outBus)="outHandler($event)"
     ></app-show-form-checkbox>
 

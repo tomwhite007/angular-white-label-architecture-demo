@@ -11,4 +11,6 @@ export enum InputEventNames {
   AddBookSelectedBook = 'AddBookFormComponent: Selected Book',
   BookListBooks = 'BookListComponent: All Books',
   BookListSelectedId = 'BookListComponent: Selected Book ID',
+  ShowFormChecked = 'ShowFormCheckboxComponent: Checked',
+  ShowFormUpdateMode = 'ShowFormCheckboxComponent: Update Mode',
 }

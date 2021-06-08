@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { createBus } from '@gyrus/ui-io-bus';
 import { ComponentStore } from '@ngrx/component-store';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { BooksFacade } from '../+state/books.facade';
 import { BooksEntity } from '../+state/books.models';
 import { InputEventNames } from '../_shared/interfaces/bus-event-names.interface';
 import { AddBookInputEvents } from './add-book-form/add-book-form.component';
 import { BookListInputEvents } from './book-list/book-list.component';
+import { ShowFormInputEvents } from './show-form-checkbox/show-form-checkbox.component';
 
 interface LocalState {
   showForm: boolean;
@@ -110,6 +111,17 @@ export class BookManagerComponentStateService extends ComponentStore<LocalState>
     {
       eventName: InputEventNames.BookListSelectedId,
       payload$: this.books.selectedId$,
+    }
+  );
+
+  readonly showFormCheckboxBus$ = createBus<ShowFormInputEvents>(
+    {
+      eventName: InputEventNames.ShowFormChecked,
+      payload$: this.select((state) => state.showForm),
+    },
+    {
+      eventName: InputEventNames.ShowFormUpdateMode,
+      payload$: this.books.selectedId$.pipe(map((id) => !!id)),
     }
   );
 }

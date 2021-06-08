@@ -24,6 +24,7 @@ export class BookManagerComponent implements OnInit {
   vm$ = this.state.vm$;
   addBookFormBus$ = this.state.addBookFormBus$;
   bookListBus$ = this.state.bookListBus$;
+  showFormCheckboxBus$ = this.state.showFormCheckboxBus$;
 
   constructor(
     private state: BookManagerComponentStateService,
