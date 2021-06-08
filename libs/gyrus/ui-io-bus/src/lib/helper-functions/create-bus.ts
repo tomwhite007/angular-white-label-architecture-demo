@@ -3,11 +3,11 @@ import { Observable, merge } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 export function createBus<T extends InputBusEvent<unknown>>(
-  ...namedStreams: { name: string; payload$: Observable<unknown> }[]
+  ...namedStreams: { eventName: string; payload$: Observable<unknown> }[]
 ) {
   const eventStreams = namedStreams.map((namedStream) =>
     namedStream.payload$.pipe(
-      map((payload) => createInputBusEvent<T>(namedStream.name, payload))
+      map((payload) => createInputBusEvent<T>(namedStream.eventName, payload))
     )
   );
   return merge(...eventStreams);

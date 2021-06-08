@@ -93,22 +93,22 @@ export class BookManagerComponentStateService extends ComponentStore<LocalState>
 
   readonly addBookFormBus$ = createBus<AddBookInputEvents>(
     {
-      name: InputEventNames.AddBookShowForm,
+      eventName: InputEventNames.AddBookShowForm,
       payload$: this.select((state) => state.showForm),
     },
     {
-      name: InputEventNames.AddBookSelectedBook,
+      eventName: InputEventNames.AddBookSelectedBook,
       payload$: this.books.selectedBook$,
     }
   );
 
   readonly bookListBus$ = createBus<BookListInputEvents>(
     {
-      name: InputEventNames.BookListBooks,
+      eventName: InputEventNames.BookListBooks,
       payload$: this.books.allBooks$,
     },
     {
-      name: InputEventNames.BookListSelectedId,
+      eventName: InputEventNames.BookListSelectedId,
       payload$: this.books.selectedId$,
     }
   );
