@@ -22,7 +22,7 @@
   >
     <app-book-list
       *ngSwitchCase="0"
-      [inBus]="bookListBus$ | async"
+      [inBus$]="bookListBus$"
       (outBus)="outHandler($event)"
     ></app-book-list>
 

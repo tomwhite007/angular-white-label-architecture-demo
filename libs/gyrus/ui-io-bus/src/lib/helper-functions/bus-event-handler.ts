@@ -1,7 +1,7 @@
 import { InputBusEvent } from '../interfaces/input-bus-event.interface';
 import { OutputBusEvent } from '../interfaces/output-bus-event.interface';
 
-interface HandlerLookup {
+export interface HandlerLookup {
   [eventName: string]: (payload: unknown) => void;
 }
 

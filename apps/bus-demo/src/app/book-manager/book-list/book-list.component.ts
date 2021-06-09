@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   Output,
 } from '@angular/core';
 import {
@@ -11,6 +13,7 @@ import {
   outBusEmit,
   OutputBusEvent,
 } from '@gyrus/ui-io-bus';
+import { Observable, Subscription } from 'rxjs';
 import { BooksEntity } from '../../+state/books.models';
 import {
   InputEventNames,
@@ -33,17 +36,23 @@ export type BookListInputEvents = BookListBooksEvent | BookListSelectedIdEvent;
   styleUrls: ['./book-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BookListComponent {
-  @Input() set inBus(event: BookListInputEvents) {
-    busEventHandler(event, {
-      [InputEventNames.BookListBooks]: this.setBooks,
-      [InputEventNames.BookListSelectedId]: this.setSelectedId,
+export class BookListComponent implements OnDestroy {
+  @Input() set inBus$(bus$: Observable<BookListInputEvents>) {
+    this.busSubscription = bus$.subscribe((event: BookListInputEvents) => {
+      busEventHandler(event, {
+        [InputEventNames.BookListBooks]: this.setBooks,
+        [InputEventNames.BookListSelectedId]: this.setSelectedId,
+      });
+      this.cdr.detectChanges();
     });
   }
   @Output() outBus: EventEmitter<BookListOutEvents> = new EventEmitter();
 
   books: BooksEntity[];
   selectedId: string;
+  busSubscription: Subscription;
+
+  constructor(private cdr: ChangeDetectorRef) {}
 
   handleClick(index: number) {
     const id =
@@ -66,4 +75,8 @@ export class BookListComponent {
   private setBooks = (books: BooksEntity[]) => (this.books = books);
 
   private setSelectedId = (id: string) => (this.selectedId = id);
+
+  ngOnDestroy() {
+    this.busSubscription || this.busSubscription.unsubscribe();
+  }
 }

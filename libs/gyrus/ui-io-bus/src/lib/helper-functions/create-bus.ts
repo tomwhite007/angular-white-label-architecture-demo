@@ -1,6 +1,7 @@
-import { InputBusEvent, createInputBusEvent } from '@gyrus/ui-io-bus';
 import { Observable, merge } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { InputBusEvent } from '../interfaces/input-bus-event.interface';
+import { createInputBusEvent } from './create-input-event';
 
 export function createBus<T extends InputBusEvent<unknown>>(
   ...namedStreams: {
