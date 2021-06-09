@@ -1,8 +1,18 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { outBusEmit, OutputBusEvent } from '@gyrus/ui-io-bus';
-import { OutputEventNames } from '../../_shared/interfaces/bus-event-names.interface';
+import {
+  busEventHandler,
+  InputBusEvent,
+  outBusEmit,
+  OutputBusEvent,
+} from '@gyrus/ui-io-bus';
+import {
+  InputEventNames,
+  OutputEventNames,
+} from '../../_shared/interfaces/bus-event-names.interface';
 
-export type TabsSelectTabEvent = OutputBusEvent<number>;
+export type TabsSelectTabOutputEvent = OutputBusEvent<number>;
+
+export type TabSelectedTabInputEvent = InputBusEvent<number>;
 
 @Component({
   selector: 'app-tabs',
@@ -10,9 +20,15 @@ export type TabsSelectTabEvent = OutputBusEvent<number>;
   styleUrls: ['./tabs.component.scss'],
 })
 export class TabsComponent {
-  @Input() selectedTab: number;
+  @Input() set inBus(event: TabSelectedTabInputEvent) {
+    busEventHandler(event, {
+      [InputEventNames.TabSelectedTab]: (selectedTab: number) =>
+        (this.selectedTab = selectedTab),
+    });
+  }
+  @Output() outBus = new EventEmitter<TabsSelectTabOutputEvent>();
 
-  @Output() outBus = new EventEmitter<TabsSelectTabEvent>();
+  selectedTab: number;
 
   selectTab(tab: number) {
     this.selectedTab = tab;

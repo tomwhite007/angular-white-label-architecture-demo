@@ -6,13 +6,13 @@ import { AddBookFormSubmitEvent } from './add-book-form/add-book-form.component'
 import { BookListOutEvents } from './book-list/book-list.component';
 import { BookManagerComponentStateService } from './book-manager-component-state.service';
 import { ShowFormCheckboxChangeEvent } from './show-form-checkbox/show-form-checkbox.component';
-import { TabsSelectTabEvent } from './tabs/tabs.component';
+import { TabsSelectTabOutputEvent } from './tabs/tabs.component';
 
 type OutputEvents =
   | AddBookFormSubmitEvent
   | BookListOutEvents
   | ShowFormCheckboxChangeEvent
-  | TabsSelectTabEvent;
+  | TabsSelectTabOutputEvent;
 
 @Component({
   selector: 'app-book-manager',
@@ -21,10 +21,11 @@ type OutputEvents =
   providers: [BookManagerComponentStateService],
 })
 export class BookManagerComponent implements OnInit {
-  vm$ = this.state.vm$;
+  selectedTab$ = this.state.selectedTab$;
   addBookFormBus$ = this.state.addBookFormBus$;
   bookListBus$ = this.state.bookListBus$;
   showFormCheckboxBus$ = this.state.showFormCheckboxBus$;
+  tabBus$ = this.state.tabBus$;
 
   constructor(
     private state: BookManagerComponentStateService,

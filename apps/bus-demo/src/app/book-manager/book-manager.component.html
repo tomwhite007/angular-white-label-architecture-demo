@@ -2,7 +2,7 @@
   <h1>Books App</h1>
 </header>
 
-<main *ngIf="vm$ | async as vm">
+<main>
   <section class="mt-5 mb-5">
     <app-show-form-checkbox
       [inBus]="showFormCheckboxBus$ | async"
@@ -16,9 +16,9 @@
   </section>
 
   <app-tabs
-    [selectedTab]="vm.selectedTab"
+    [inBus]="tabBus$ | async"
     (outBus)="outHandler($event)"
-    [ngSwitch]="vm.selectedTab"
+    [ngSwitch]="selectedTab$ | async"
   >
     <app-book-list
       *ngSwitchCase="0"

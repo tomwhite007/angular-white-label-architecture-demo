@@ -9,6 +9,7 @@ import { InputEventNames } from '../_shared/interfaces/bus-event-names.interface
 import { AddBookInputEvents } from './add-book-form/add-book-form.component';
 import { BookListInputEvents } from './book-list/book-list.component';
 import { ShowFormInputEvents } from './show-form-checkbox/show-form-checkbox.component';
+import { TabSelectedTabInputEvent } from './tabs/tabs.component';
 
 interface LocalState {
   showForm: boolean;
@@ -23,19 +24,6 @@ declare global {
 
 @Injectable()
 export class BookManagerComponentStateService extends ComponentStore<LocalState> {
-  readonly vm$ = this.select(
-    this.select((state) => state),
-    this.books.allBooks$,
-    this.books.selectedBook$,
-    this.books.selectedId$,
-    (LocalState, allBooks, selectedBook, selectedId) => ({
-      ...LocalState,
-      allBooks,
-      selectedBook,
-      selectedId,
-    })
-  );
-
   readonly selectedTab$ = this.select((state) => state.selectedTab);
 
   constructor(private books: BooksFacade) {
@@ -124,4 +112,9 @@ export class BookManagerComponentStateService extends ComponentStore<LocalState>
       payload$: this.books.selectedId$.pipe(map((id) => !!id)),
     }
   );
+
+  readonly tabBus$ = createBus<TabSelectedTabInputEvent>({
+    eventName: InputEventNames.TabSelectedTab,
+    payload$: this.select((state) => state.selectedTab),
+  });
 }
