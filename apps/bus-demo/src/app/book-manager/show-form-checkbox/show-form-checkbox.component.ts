@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { outBusEmit, OutputEvent } from '@gyrus/ui-io-bus';
-import { OutputEventNames } from '../../_shared/interfaces/bus-event-names.interface';
+import { OutputEventNames } from '../../_shared/interfaces/output-bus-event-names.interface';
 
 export type ShowFormCheckboxChangeEvent = OutputEvent<boolean>;
 

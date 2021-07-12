@@ -8,7 +8,7 @@ import {
 import { FormControl, FormGroup } from '@angular/forms';
 import { outBusEmit, OutputEvent } from '@gyrus/ui-io-bus';
 import { BooksEntity } from '../../+state/books.models';
-import { OutputEventNames } from '../../_shared/interfaces/bus-event-names.interface';
+import { OutputEventNames } from '../../_shared/interfaces/output-bus-event-names.interface';
 
 export type AddBookFormSubmitEvent = OutputEvent<BooksEntity>;
 

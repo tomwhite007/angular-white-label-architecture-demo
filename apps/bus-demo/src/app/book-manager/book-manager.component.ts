@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { outputEventHandler, UiIoBusLoggerService } from '@gyrus/ui-io-bus';
 import { BooksEntity } from '../+state/books.models';
-import { OutputEventNames } from '../_shared/interfaces/bus-event-names.interface';
+import { environment } from '../../environments/environment';
+import { OutputEventNames } from '../_shared/interfaces/output-bus-event-names.interface';
 import { AddBookFormSubmitEvent } from './add-book-form/add-book-form.component';
 import { BookListOutEvents } from './book-list/book-list.component';
 import { BookManagerComponentStateService } from './book-manager-component-state.service';
@@ -25,7 +26,7 @@ export class BookManagerComponent implements OnInit {
 
   constructor(
     private state: BookManagerComponentStateService,
-    private log: UiIoBusLoggerService
+    private outLog: UiIoBusLoggerService
   ) {}
 
   ngOnInit() {
@@ -33,36 +34,34 @@ export class BookManagerComponent implements OnInit {
   }
 
   outHandler(event: OutputEvents) {
-    outputEventHandler(
-      event,
-      {
-        [OutputEventNames.AddBookFormSubmit]: this.upsertBook,
-        [OutputEventNames.BookListSelectBook]: this.selectBook,
-        [OutputEventNames.BookListClearSelectedBook]: this.clearSelectedBook,
-        [OutputEventNames.ShowFormCheckboxChange]: this.toggleShowForm,
-        [OutputEventNames.TabsSelectTab]: this.selectTab,
-      },
-      this
-    );
+    environment.production || this.outLog.logOutputEvent(event);
+
+    outputEventHandler(event, {
+      [OutputEventNames.AddBookFormSubmit]: this.upsertBook,
+      [OutputEventNames.BookListSelectBook]: this.selectBook,
+      [OutputEventNames.BookListClearSelectedBook]: this.clearSelectedBook,
+      [OutputEventNames.ShowFormCheckboxChange]: this.toggleShowForm,
+      [OutputEventNames.TabsSelectTab]: this.selectTab,
+    });
   }
 
-  private toggleShowForm() {
+  private toggleShowForm = () => {
     this.state.toggleShowForm();
-  }
+  };
 
-  private selectTab(tabNo: number) {
+  private selectTab = (tabNo: number) => {
     this.state.setSelectedTab(tabNo);
-  }
+  };
 
-  private upsertBook(book: BooksEntity) {
+  private upsertBook = (book: BooksEntity) => {
     this.state.upsertBook(book);
-  }
+  };
 
-  private selectBook(id: string) {
+  private selectBook = (id: string) => {
     this.state.selectBook(id);
-  }
+  };
 
-  private clearSelectedBook() {
+  private clearSelectedBook = () => {
     this.state.selectBook(null);
-  }
+  };
 }

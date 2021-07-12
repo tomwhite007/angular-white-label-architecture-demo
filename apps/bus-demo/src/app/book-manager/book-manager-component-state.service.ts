@@ -64,8 +64,6 @@ export class BookManagerComponentStateService extends ComponentStore<LocalState>
             event: 'tabSelected',
             value: tab,
           });
-
-          console.log('window.dataLayer', window.dataLayer);
         })
       );
     }

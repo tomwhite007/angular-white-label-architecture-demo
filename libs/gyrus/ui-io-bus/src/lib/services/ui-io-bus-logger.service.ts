@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
+import { OutputEvent } from '../interfaces/public.interface';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'any',
 })
 export class UiIoBusLoggerService {
-  dummyStyledLog() {
+  logOutputEvent(event: OutputEvent<unknown>) {
+    const eventStr = JSON.stringify(event)
+      .replace(/"/g, ' ')
+      .replace(/,/g, ',  ');
     console.warn(
-      '%c***** USING MOCK DATA API *****',
-      'background: #f00; letter-spacing: 2px; font-weight: 600; color: #000; padding: 12px'
+      '%cOutput Bus Event: ' + eventStr,
+      'display: block; background-color: #fcba03; color: #000; border-radius: 4px; padding: 4px; line-height: 1.5em;'
     );
   }
 }
