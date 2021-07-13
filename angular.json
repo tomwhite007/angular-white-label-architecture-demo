@@ -2,43 +2,6 @@
   "version": 1,
   "defaultProject": "bus-demo",
   "projects": {
-    "gyrus-ui-io-bus": {
-      "projectType": "library",
-      "root": "libs/gyrus/ui-io-bus",
-      "sourceRoot": "libs/gyrus/ui-io-bus/src",
-      "prefix": "playground",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "libs/gyrus/ui-io-bus/tsconfig.lib.json",
-            "project": "libs/gyrus/ui-io-bus/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/gyrus/ui-io-bus/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/gyrus/ui-io-bus/src/**/*.ts",
-              "libs/gyrus/ui-io-bus/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/gyrus/ui-io-bus"],
-          "options": {
-            "jestConfig": "libs/gyrus/ui-io-bus/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "bus-demo": {
       "projectType": "application",
       "schematics": {
@@ -265,6 +228,43 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/without-bus-demo-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "gyrus-ui-output-bus": {
+      "projectType": "library",
+      "root": "libs/gyrus/ui-output-bus",
+      "sourceRoot": "libs/gyrus/ui-output-bus/src",
+      "prefix": "playground",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/gyrus/ui-output-bus/tsconfig.lib.json",
+            "project": "libs/gyrus/ui-output-bus/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/gyrus/ui-output-bus/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/gyrus/ui-output-bus/src/**/*.ts",
+              "libs/gyrus/ui-output-bus/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/gyrus/ui-output-bus"],
+          "options": {
+            "jestConfig": "libs/gyrus/ui-output-bus/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

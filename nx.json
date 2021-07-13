@@ -1,8 +1,13 @@
 {
-  "affected": { "defaultBase": "master" },
+  "affected": {
+    "defaultBase": "master"
+  },
   "implicitDependencies": {
     "angular.json": "*",
-    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
@@ -12,17 +17,28 @@
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
     }
   },
   "projects": {
-    "gyrus-ui-io-bus": { "tags": [] },
-    "bus-demo": { "tags": ["scope:bus", "type:app"] },
-    "bus-demo-e2e": { "tags": [], "implicitDependencies": ["bus-demo"] },
-    "without-bus-demo": { "tags": ["scope:without", "type:app"] },
+    "bus-demo": {
+      "tags": ["scope:bus", "type:app"]
+    },
+    "bus-demo-e2e": {
+      "tags": [],
+      "implicitDependencies": ["bus-demo"]
+    },
+    "without-bus-demo": {
+      "tags": ["scope:without", "type:app"]
+    },
     "without-bus-demo-e2e": {
       "tags": [],
       "implicitDependencies": ["without-bus-demo"]
+    },
+    "gyrus-ui-output-bus": {
+      "tags": []
     }
   }
 }

@@ -4,8 +4,8 @@ Experiment into using @Input and @Output as a bus to reduce template footprint a
 
 ## Todo
 
-use extends OutputEvent<unknown> to give better descrition to types on outputEvent()
-Try typing OutputEvent so that the name is defined as well
+use extends OutputBusEvent<unknown> to give better descrition to types on outputEvent()
+Try typing OutputBusEvent so that the name is defined as well
 
 Add readme comments
 Create marbles tests on Component Store repo
