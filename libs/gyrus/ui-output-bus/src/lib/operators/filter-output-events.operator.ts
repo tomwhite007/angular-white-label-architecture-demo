@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { MonoTypeOperatorFunction, Observable } from 'rxjs';
 import { distinctUntilChanged, filter } from 'rxjs/operators';
-import { OutputEvent } from '../interfaces/public.interface';
+import { OutputBusEvent } from '../interfaces/output-bus-event.interface';
 
 /**
  * Custom RxJs pipe operator:
@@ -11,8 +11,8 @@ import { OutputEvent } from '../interfaces/public.interface';
  */
 export const filterOutputEvents = (
   ...eventNames: string[]
-): MonoTypeOperatorFunction<OutputEvent<any>> => {
-  return (source$: Observable<OutputEvent<any>>) =>
+): MonoTypeOperatorFunction<OutputBusEvent<any>> => {
+  return (source$: Observable<OutputBusEvent<any>>) =>
     source$.pipe(
       filter((event) => eventNames.includes(event.name), distinctUntilChanged())
     );

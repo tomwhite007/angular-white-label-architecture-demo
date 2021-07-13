@@ -5,12 +5,12 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { outBusEmit, OutputEvent } from '@gyrus/ui-io-bus';
+import { outBusEmit, OutputBusEvent } from '@gyrus/ui-output-bus';
 import { BooksEntity } from '../../+state/books.models';
 import { OutputEventNames } from '../../_shared/interfaces/output-bus-event-names.interface';
 
-export type BookListSelectBookEvent = OutputEvent<string>;
-export type BookListClearSelectedBookEvent = OutputEvent<null>;
+export type BookListSelectBookEvent = OutputBusEvent<string>;
+export type BookListClearSelectedBookEvent = OutputBusEvent<null>;
 export type BookListOutEvents =
   | BookListSelectBookEvent
   | BookListClearSelectedBookEvent;

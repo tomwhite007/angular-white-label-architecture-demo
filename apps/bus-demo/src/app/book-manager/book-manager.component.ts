@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { outputEventHandler, UiOutputBusLoggerService } from '@gyrus/ui-io-bus';
+import {
+  outputEventHandler,
+  UiOutputBusLoggerService,
+} from '@gyrus/ui-output-bus';
 import { BooksEntity } from '../+state/books.models';
 import { environment } from '../../environments/environment';
 import { OutputEventNames } from '../_shared/interfaces/output-bus-event-names.interface';

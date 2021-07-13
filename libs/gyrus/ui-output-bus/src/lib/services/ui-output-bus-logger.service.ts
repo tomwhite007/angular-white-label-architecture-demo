@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { OutputEvent } from '../interfaces/public.interface';
+import { OutputBusEvent } from '../interfaces/output-bus-event.interface';
 
 @Injectable({
   providedIn: 'any',
 })
 export class UiOutputBusLoggerService {
-  logOutputEvent(event: OutputEvent<unknown>) {
+  logOutputEvent(event: OutputBusEvent<unknown>) {
     const eventStr = JSON.stringify(event)
       .replace(/"/g, ' ')
       .replace(/,/g, ',  ');

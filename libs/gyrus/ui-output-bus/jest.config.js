@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'gyrus-ui-io-bus',
+  displayName: 'gyrus-ui-output-bus',
   preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -14,7 +14,7 @@ module.exports = {
       },
     },
   },
-  coverageDirectory: '../../../coverage/libs/gyrus/ui-io-bus',
+  coverageDirectory: '../../../coverage/libs/gyrus/ui-output-bus',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { OutputEvent } from '@gyrus/ui-io-bus';
+import { OutputBusEvent } from '../interfaces/output-bus-event.interface';
 import { Subject } from 'rxjs';
 
 /**
  * Helper Service to convert OutputEvents to an Observable
  */
 @Injectable()
-export class OutputEventObservableService<T extends OutputEvent<unknown>> {
+export class OutputEventObservableService<T extends OutputBusEvent<unknown>> {
   private _outBus$: Subject<T> = new Subject();
 
   /**
@@ -16,7 +16,7 @@ export class OutputEventObservableService<T extends OutputEvent<unknown>> {
 
   /**
    * Adds OutputEvents to outBus$ Observable.
-   * @param event OutputEvent object
+   * @param event OutputBusEvent object
    */
   outputEventToObservable(event: T) {
     this._outBus$.next(event);

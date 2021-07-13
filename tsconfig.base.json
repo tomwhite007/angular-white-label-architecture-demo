@@ -16,11 +16,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@gyrus/ui-io-bus": ["libs/gyrus/ui-io-bus/src/index.ts"]
+      "@gyrus/ui-output-bus": ["libs/gyrus/ui-output-bus/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"],
-  "angularCompilerOptions":{
+  "angularCompilerOptions": {
     "strictTemplates": true
   }
 }

@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { OutputEvent } from '../interfaces/public.interface';
+import { OutputBusEvent } from '../interfaces/output-bus-event.interface';
 import { OutputEventObservableService } from './output-event-observable.service';
 
 describe('OutputEventObservableService', () => {
-  let service: OutputEventObservableService<OutputEvent<unknown>>;
+  let service: OutputEventObservableService<OutputBusEvent<unknown>>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

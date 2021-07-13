@@ -1,4 +1,4 @@
-import { OutputEvent } from '../interfaces/public.interface';
+import { OutputBusEvent } from '../interfaces/output-bus-event.interface';
 
 interface HandlerLookup {
   [eventName: string]: (payload: unknown) => void;
@@ -6,13 +6,13 @@ interface HandlerLookup {
 
 /**
  * UI IO Bus Output Event handler helper.
- * Calls custom handler from lookup based on OutputEvent name.
- * @param event OutputEvent object
+ * Calls custom handler from lookup based on OutputBusEvent name.
+ * @param event OutputBusEvent object
  * @param handlerLookup Key based lookup object with handler functions as properties
  * @param ignoreMissing Optionally allow unhandled events to pass through silently
  */
 export function outputEventHandler(
-  event: OutputEvent<unknown>,
+  event: OutputBusEvent<unknown>,
   handlerLookup: HandlerLookup,
   ignoreMissing = false
 ) {
@@ -31,4 +31,3 @@ export function outputEventHandler(
     }
   }
 }
-
