@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { outputEventHandler, UiIoBusLoggerService } from '@gyrus/ui-io-bus';
+import { outputEventHandler, UiOutputBusLoggerService } from '@gyrus/ui-io-bus';
 import { BooksEntity } from '../+state/books.models';
 import { environment } from '../../environments/environment';
 import { OutputEventNames } from '../_shared/interfaces/output-bus-event-names.interface';
@@ -26,7 +26,7 @@ export class BookManagerComponent implements OnInit {
 
   constructor(
     private state: BookManagerComponentStateService,
-    private outLog: UiIoBusLoggerService
+    private outLog: UiOutputBusLoggerService
   ) {}
 
   ngOnInit() {

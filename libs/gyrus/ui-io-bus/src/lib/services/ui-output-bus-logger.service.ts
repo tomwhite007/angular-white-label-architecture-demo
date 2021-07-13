@@ -4,7 +4,7 @@ import { OutputEvent } from '../interfaces/public.interface';
 @Injectable({
   providedIn: 'any',
 })
-export class UiIoBusLoggerService {
+export class UiOutputBusLoggerService {
   logOutputEvent(event: OutputEvent<unknown>) {
     const eventStr = JSON.stringify(event)
       .replace(/"/g, ' ')
