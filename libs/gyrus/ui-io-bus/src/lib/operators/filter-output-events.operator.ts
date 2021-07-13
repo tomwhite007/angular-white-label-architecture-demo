@@ -3,6 +3,12 @@ import { MonoTypeOperatorFunction, Observable } from 'rxjs';
 import { distinctUntilChanged, filter } from 'rxjs/operators';
 import { OutputEvent } from '../interfaces/public.interface';
 
+/**
+ * Custom RxJs pipe operator:
+ * Filter and output bus event stream to a given list of event names
+ * @param eventNames
+ * @returns
+ */
 export const filterOutputEvents = (
   ...eventNames: string[]
 ): MonoTypeOperatorFunction<OutputEvent<any>> => {
