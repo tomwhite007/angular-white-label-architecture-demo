@@ -10,7 +10,10 @@ import { outBusEmit, OutputBusEvent } from '@gyrus/ui-output-bus';
 import { BooksEntity } from '../../+state/books.models';
 import { OutputEventNames } from '../../_shared/interfaces/output-bus-event-names.interface';
 
-export type AddBookFormSubmitEvent = OutputBusEvent<BooksEntity>;
+export type AddBookFormSubmitEvent = OutputBusEvent<
+  OutputEventNames.AddBookFormSubmit,
+  BooksEntity
+>;
 export interface AddBookFormDataInput {
   showForm: boolean;
   selectedBook: BooksEntity | null;
@@ -49,7 +52,7 @@ export class AddBookFormComponent {
   buttonText = 'Add book';
 
   submit() {
-    outBusEmit<BooksEntity>(
+    outBusEmit<AddBookFormSubmitEvent>(
       this.outBus,
       OutputEventNames.AddBookFormSubmit,
       this.formGroup.getRawValue()

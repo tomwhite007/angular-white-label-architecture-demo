@@ -9,8 +9,14 @@ import { outBusEmit, OutputBusEvent } from '@gyrus/ui-output-bus';
 import { BooksEntity } from '../../+state/books.models';
 import { OutputEventNames } from '../../_shared/interfaces/output-bus-event-names.interface';
 
-export type BookListSelectBookEvent = OutputBusEvent<string>;
-export type BookListClearSelectedBookEvent = OutputBusEvent<null>;
+export type BookListSelectBookEvent = OutputBusEvent<
+  OutputEventNames.BookListSelectBook,
+  string
+>;
+export type BookListClearSelectedBookEvent = OutputBusEvent<
+  OutputEventNames.BookListClearSelectedBook,
+  null
+>;
 export type BookListOutEvents =
   | BookListSelectBookEvent
   | BookListClearSelectedBookEvent;
@@ -34,11 +40,15 @@ export class BookListComponent {
   handleClick(index: number) {
     const id =
       this.selectedId === this.books[index].id ? null : this.books[index].id;
-    outBusEmit<string>(this.outBus, OutputEventNames.BookListSelectBook, id);
+    outBusEmit<BookListSelectBookEvent>(
+      this.outBus,
+      OutputEventNames.BookListSelectBook,
+      id
+    );
   }
 
   clearSelected() {
-    outBusEmit<null>(
+    outBusEmit<BookListClearSelectedBookEvent>(
       this.outBus,
       OutputEventNames.BookListClearSelectedBook,
       null

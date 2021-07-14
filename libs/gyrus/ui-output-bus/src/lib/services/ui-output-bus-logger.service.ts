@@ -5,7 +5,7 @@ import { OutputBusEvent } from '../interfaces/output-bus-event.interface';
   providedIn: 'any',
 })
 export class UiOutputBusLoggerService {
-  logOutputEvent(event: OutputBusEvent<unknown>) {
+  logOutputEvent(event: OutputBusEvent<unknown, unknown>) {
     const eventStr = JSON.stringify(event)
       .replace(/"/g, ' ')
       .replace(/,/g, ',  ');

@@ -1,11 +1,11 @@
 /**
  * UI IO Bus OutputBusEvent with subtyped payload
  */
-export type OutputBusEvent<T> = {
+export type OutputBusEvent<Name, Payload> = {
   /**
    * name - recommended format: '[Component Name]: [Output Type]'
    */
-  name: string;
+  name: Name;
 
   /**
    * group - name for group filtering of events
@@ -20,5 +20,5 @@ export type OutputBusEvent<T> = {
   /**
    * payload - data packet or body of event
    */
-  payload: T;
+  payload: Payload;
 };

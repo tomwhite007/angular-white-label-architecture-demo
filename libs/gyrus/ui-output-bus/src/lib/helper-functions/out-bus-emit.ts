@@ -9,10 +9,10 @@ import { dateTimeStamp } from './date-stamp';
  * @param payload - typed data packet or body of event
  * @param group - name for group filtering of events
  */
-export function outBusEmit<T>(
-  outBusRef: EventEmitter<OutputBusEvent<unknown>>,
-  name: string,
-  payload: T,
+export function outBusEmit<T extends OutputBusEvent<unknown, unknown>>(
+  outBusRef: EventEmitter<OutputBusEvent<unknown, unknown>>,
+  name: T['name'],
+  payload: T['payload'],
   group?: string
 ): void {
   outBusRef.emit({ name, group, created: dateTimeStamp(), payload });
