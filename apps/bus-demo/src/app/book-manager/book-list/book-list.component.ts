@@ -34,11 +34,15 @@ export class BookListComponent {
   handleClick(index: number) {
     const id =
       this.selectedId === this.books[index].id ? null : this.books[index].id;
-    outBusEmit<string>(this.outBus, OutputEventNames.BookListSelectBook, id);
+    outBusEmit<BookListSelectBookEvent>(
+      this.outBus,
+      OutputEventNames.BookListSelectBook,
+      id
+    );
   }
 
   clearSelected() {
-    outBusEmit<null>(
+    outBusEmit<BookListClearSelectedBookEvent>(
       this.outBus,
       OutputEventNames.BookListClearSelectedBook,
       null
