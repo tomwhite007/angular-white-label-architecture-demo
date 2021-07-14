@@ -9,8 +9,14 @@ import { outBusEmit, OutputBusEvent } from '@gyrus/ui-output-bus';
 import { BooksEntity } from '../../+state/books.models';
 import { OutputEventNames } from '../../_shared/interfaces/output-bus-event-names.interface';
 
-export type BookListSelectBookEvent = OutputBusEvent<string>;
-export type BookListClearSelectedBookEvent = OutputBusEvent<null>;
+export type BookListSelectBookEvent = OutputBusEvent<
+  OutputEventNames.BookListSelectBook,
+  string
+>;
+export type BookListClearSelectedBookEvent = OutputBusEvent<
+  OutputEventNames.BookListClearSelectedBook,
+  null
+>;
 export type BookListOutEvents =
   | BookListSelectBookEvent
   | BookListClearSelectedBookEvent;
