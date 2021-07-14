@@ -10,9 +10,12 @@ export type TabsSelectTabEvent = OutputBusEvent<number>;
   styleUrls: ['./tabs.component.scss'],
 })
 export class TabsComponent {
-  @Input() selectedTab: number;
-
+  @Input() set data(data: { selectedTab: number }) {
+    this.selectedTab = data.selectedTab;
+  }
   @Output() outBus = new EventEmitter<TabsSelectTabEvent>();
+
+  selectedTab: number;
 
   selectTab(tab: number) {
     this.selectedTab = tab;

@@ -11,6 +11,10 @@ import { BooksEntity } from '../../+state/books.models';
 import { OutputEventNames } from '../../_shared/interfaces/output-bus-event-names.interface';
 
 export type AddBookFormSubmitEvent = OutputBusEvent<BooksEntity>;
+export interface AddBookFormDataInput {
+  showForm: boolean;
+  selectedBook: BooksEntity | null;
+}
 
 @Component({
   selector: 'app-add-book-form',
@@ -19,10 +23,11 @@ export type AddBookFormSubmitEvent = OutputBusEvent<BooksEntity>;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddBookFormComponent {
-  @Input() showForm: boolean;
-  @Input() set selectedBook(book: BooksEntity | null) {
-    if (book) {
-      this.formGroup.setValue(book);
+  @Input() set data(data: AddBookFormDataInput) {
+    this.showForm = data.showForm;
+
+    if (data.selectedBook) {
+      this.formGroup.setValue(data.selectedBook);
       this.buttonText = 'Update book';
       this.formGroup.controls.id.disable();
     } else {
@@ -32,6 +37,9 @@ export class AddBookFormComponent {
     }
   }
   @Output() outBus: EventEmitter<AddBookFormSubmitEvent> = new EventEmitter();
+
+  showForm: boolean;
+  selectedBook: BooksEntity | null;
 
   formGroup = new FormGroup({
     id: new FormControl(''),
