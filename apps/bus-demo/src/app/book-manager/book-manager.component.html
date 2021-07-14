@@ -5,25 +5,24 @@
 <main *ngIf="vm$ | async as vm">
   <section class="mt-5 mb-5">
     <app-show-form-checkbox
-      [data]="vm.showFormCheckBoxDataInput"
+      [data]="vm.showFormCheckBoxData"
       (outBus)="outHandler($event)"
     ></app-show-form-checkbox>
 
     <app-add-book-form
-      [data]="vm.addBookFormDataInput"
+      [data]="vm.addBookFormData"
       (outBus)="outHandler($event)"
     ></app-add-book-form>
   </section>
 
   <app-tabs
-    [data]="vm.tabsDataInput"
+    [data]="vm.tabsData"
     (outBus)="outHandler($event)"
-    [ngSwitch]="vm.selectedTab"
+    [ngSwitch]="vm.tabsData.selectedTab"
   >
     <app-book-list
       *ngSwitchCase="0"
-      [books]="vm.allBooks"
-      [selectedId]="vm.selectedId"
+      [data]="vm.bookListData"
       (outBus)="outHandler($event)"
     ></app-book-list>
 

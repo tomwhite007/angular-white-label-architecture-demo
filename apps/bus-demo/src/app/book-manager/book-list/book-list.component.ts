@@ -22,10 +22,14 @@ export type BookListOutEvents =
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BookListComponent {
-  @Input() books: BooksEntity[];
-  @Input() selectedId: string;
-
+  @Input() set data(data: { books: BooksEntity[]; selectedId: string }) {
+    this.books = data.books;
+    this.selectedId = data.selectedId;
+  }
   @Output() outBus: EventEmitter<BookListOutEvents> = new EventEmitter();
+
+  books: BooksEntity[];
+  selectedId: string;
 
   handleClick(index: number) {
     const id =

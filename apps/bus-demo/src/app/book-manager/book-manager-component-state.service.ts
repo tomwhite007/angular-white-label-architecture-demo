@@ -25,16 +25,13 @@ export class BookManagerComponentStateService extends ComponentStore<LocalState>
     this.books.selectedBook$,
     this.books.selectedId$,
     (localState, allBooks, selectedBook, selectedId) => ({
-      ...localState,
-      allBooks,
-      selectedBook,
-      selectedId,
-      addBookFormDataInput: { showForm: localState.showForm, selectedBook },
-      showFormCheckBoxDataInput: {
+      addBookFormData: { showForm: localState.showForm, selectedBook },
+      showFormCheckBoxData: {
         checked: localState.showForm,
         updateMode: !!selectId,
       },
-      tabsDataInput: { selectedTab: localState.selectedTab },
+      tabsData: { selectedTab: localState.selectedTab },
+      bookListData: { books: allBooks, selectedId },
     })
   );
 
