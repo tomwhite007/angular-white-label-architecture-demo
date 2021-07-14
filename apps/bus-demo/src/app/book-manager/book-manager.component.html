@@ -16,7 +16,7 @@
   </section>
 
   <app-tabs
-    [selectedTab]="vm.selectedTab"
+    [data]="vm.tabsDataInput"
     (outBus)="outHandler($event)"
     [ngSwitch]="vm.selectedTab"
   >

@@ -34,6 +34,7 @@ export class BookManagerComponentStateService extends ComponentStore<LocalState>
         checked: localState.showForm,
         updateMode: !!selectId,
       },
+      tabsDataInput: { selectedTab: localState.selectedTab },
     })
   );
 
