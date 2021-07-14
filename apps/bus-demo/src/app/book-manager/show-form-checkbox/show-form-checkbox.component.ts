@@ -10,10 +10,14 @@ export type ShowFormCheckboxChangeEvent = OutputBusEvent<boolean>;
   styleUrls: ['./show-form-checkbox.component.scss'],
 })
 export class ShowFormCheckboxComponent {
-  @Input() checked: boolean;
-  @Input() updateMode: boolean;
-
+  @Input() set data(data: { checked: boolean; updateMode: boolean }) {
+    this.checked = data.checked;
+    this.updateMode = data.updateMode;
+  }
   @Output() outBus = new EventEmitter<ShowFormCheckboxChangeEvent>();
+
+  checked: boolean;
+  updateMode: boolean;
 
   handleChange() {
     this.checked = !this.checked;
