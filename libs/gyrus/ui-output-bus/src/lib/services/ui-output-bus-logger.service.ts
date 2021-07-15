@@ -6,10 +6,7 @@ import { OutputBusEvent } from '../interfaces/output-bus-event.interface';
 })
 export class UiOutputBusLoggerService {
   logOutputEvent(event: OutputBusEvent<unknown, unknown>) {
-    const payload =
-      typeof event.payload === 'object'
-        ? JSON.stringify(event.payload)
-        : event.payload;
+    const payload = JSON.stringify(event.payload);
     const group = event.group ? `,   group: ${event.group}` : '';
     const eventStr = `${event.name},   payload: ${payload}${group},   ${event.created}`;
     console.warn(
