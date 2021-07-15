@@ -2,6 +2,12 @@
 
 Experiment into using merged @Inputs and @Output as a bus to reduce template footprint.
 
+## Watch it go
+
+1. `ng serve`
+2. Open the console so you can see the logged events
+3. Start clicking
+
 ## Background
 
 When creating feature UI / Presenter / Dumb (or Atomic Organism) components that get used in many places, i.e. apps applications that use common features, having many @Inputs and @Outputs makes the containing templates bloated and hard to read. On top of that, repeated revisions of the UI component might include changes or additions to @Inputs and @Outputs that need to be updated in every template (and underlying local state) where the component is used. Some of these can easily be missed by the compiler (e.g. if the UI component doesn't throw an error for missing @Inputs), meaning that all implementations have to be updated manually. This maintenance increases to potentially unmanageable levels at scale.
