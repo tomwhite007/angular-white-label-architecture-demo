@@ -28,7 +28,6 @@ export interface AddBookFormDataInput {
 export class AddBookFormComponent {
   @Input() set data(data: AddBookFormDataInput) {
     this.showForm = data.showForm;
-
     if (data.selectedBook) {
       this.formGroup.setValue(data.selectedBook);
       this.buttonText = 'Update book';
@@ -43,12 +42,10 @@ export class AddBookFormComponent {
 
   showForm: boolean;
   selectedBook: BooksEntity | null;
-
   formGroup = new FormGroup({
     id: new FormControl(''),
     title: new FormControl(''),
   });
-
   buttonText = 'Add book';
 
   submit() {
