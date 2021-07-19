@@ -51,4 +51,9 @@ Handling Output Bus Events in the container component class:
       [OutputEventNames.TabsSelectTab]: this.selectTab,
     });
   }
+
+  // assign property to arrow function expression to bind this into outputEventHandler()
+  private upsertBook = (book: BooksEntity) => {
+    this.state.upsertBook(book);
+  };
 ```
