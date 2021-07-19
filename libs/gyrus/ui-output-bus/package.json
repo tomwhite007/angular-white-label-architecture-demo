@@ -1,6 +1,6 @@
 {
-  "name": "@gyrus/ui-io-bus",
-  "version": "0.0.1",
+  "name": "@gyrus/ui-output-bus",
+  "version": "0.1.0",
   "peerDependencies": {
     "@angular/common": "^11.2.9",
     "@angular/core": "^11.2.9"
