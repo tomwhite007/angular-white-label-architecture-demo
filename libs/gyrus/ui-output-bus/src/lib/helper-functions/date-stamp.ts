@@ -1,3 +1,3 @@
 export function dateTimeStamp(): string {
-  return new Date().toISOString();
+  return new Date().toLocaleString();
 }
