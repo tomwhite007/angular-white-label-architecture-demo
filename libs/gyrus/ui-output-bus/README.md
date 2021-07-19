@@ -1,4 +1,4 @@
-# ui-output-bus
+# ngx-ui-output-bus
 
 Helper functions to merge Angular Component @Outputs into a bus to reduce template footprint.
 
