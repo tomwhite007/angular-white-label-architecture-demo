@@ -1,3 +1,3 @@
-export function dateTimeStamp(): string {
-  return new Date().toLocaleString();
+export function timeStamp(): string {
+  return new Date().toLocaleTimeString();
 }
