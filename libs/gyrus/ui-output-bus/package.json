@@ -1,6 +1,23 @@
 {
-  "name": "@gyrus/ui-io-bus",
-  "version": "0.0.1",
+  "name": "@gyrus/ngx-ui-output-bus",
+  "version": "0.1.3",
+  "keywords": [
+    "angular",
+    "output",
+    "bus"
+  ],
+  "author": {
+    "name": "Tom White",
+    "url": "https://github.com/tomwhite007"
+  },
+  "description": "Helper functions and types to merge Angular Component @Outputs into a bus to reduce template footprint",
+  "license": "MIT",
+  "maintainers": [
+    "Tom White"
+  ],
+  "repository": {
+    "url": "https://github.com/tomwhite007/ui-output-bus"
+  },
   "peerDependencies": {
     "@angular/common": "^11.2.9",
     "@angular/core": "^11.2.9"
