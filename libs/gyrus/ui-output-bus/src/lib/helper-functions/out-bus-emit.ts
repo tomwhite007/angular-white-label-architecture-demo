@@ -1,6 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { OutputBusEvent } from '../interfaces/output-bus-event.interface';
-import { dateTimeStamp } from './date-stamp';
+import { timeStamp } from './date-stamp';
 
 /**
  * Builds OutputBusEvent object and emits it via the outBusRef emitter
@@ -15,5 +15,5 @@ export function outBusEmit<T extends OutputBusEvent<unknown, unknown>>(
   payload: T['payload'],
   group?: string
 ): void {
-  outBusRef.emit({ name, group, created: dateTimeStamp(), payload });
+  outBusRef.emit({ name, group, created: timeStamp(), payload });
 }
