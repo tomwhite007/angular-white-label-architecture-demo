@@ -9,7 +9,7 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "parserOptions": {
-        "project": ["libs/gyrus/ui-io-bus/tsconfig.*?.json"]
+        "project": ["libs/gyrus/ui-output-bus/tsconfig.*?.json"]
       },
       "rules": {
         "@angular-eslint/directive-selector": [

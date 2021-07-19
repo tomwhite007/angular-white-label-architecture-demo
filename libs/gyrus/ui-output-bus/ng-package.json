@@ -1,6 +1,6 @@
 {
   "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../../dist/libs/gyrus/ui-io-bus",
+  "dest": "../../../dist/libs/gyrus/ui-output-bus",
   "lib": {
     "entryFile": "src/index.ts"
   }
