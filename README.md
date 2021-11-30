@@ -2,6 +2,10 @@
 
 Experiment into using merged @Inputs and @Output as a bus to reduce template footprint.
 
+## NPM library link
+
+This library is also available as an NPM lib: [ngx-ui-output-bus](https://www.npmjs.com/package/@gyrus/ngx-ui-output-bus)
+
 ## Watch it go
 
 1. `ng serve`
