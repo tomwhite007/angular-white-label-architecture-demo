@@ -16,26 +16,42 @@
   "npmScope": "bus-demo",
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ],
+        "accessToken": "MDIzMmMxNmMtZTBiZi00MzFhLWE3OGMtZGI0NjM0MTliMTkyfHJlYWQtd3JpdGU="
       }
     }
   },
   "projects": {
     "bus-demo": {
-      "tags": ["scope:bus", "type:app"]
+      "tags": [
+        "scope:bus",
+        "type:app"
+      ]
     },
     "bus-demo-e2e": {
       "tags": [],
-      "implicitDependencies": ["bus-demo"]
+      "implicitDependencies": [
+        "bus-demo"
+      ]
     },
     "without-bus-demo": {
-      "tags": ["scope:without", "type:app"]
+      "tags": [
+        "scope:without",
+        "type:app"
+      ]
     },
     "without-bus-demo-e2e": {
       "tags": [],
-      "implicitDependencies": ["without-bus-demo"]
+      "implicitDependencies": [
+        "without-bus-demo"
+      ]
     },
     "gyrus-ui-output-bus": {
       "tags": []
