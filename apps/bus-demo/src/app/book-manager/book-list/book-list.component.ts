@@ -11,7 +11,7 @@ import { OutputEventNames } from '../../_shared/interfaces/output-bus-event-name
 
 export type BookListSelectBookEvent = OutputBusEvent<
   OutputEventNames.BookListSelectBook,
-  string
+  string | undefined
 >;
 export type BookListClearSelectedBookEvent = OutputBusEvent<
   OutputEventNames.BookListClearSelectedBook,
@@ -28,22 +28,21 @@ export type BookListOutEvents =
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BookListComponent {
-  @Input() set data(data: { books: BooksEntity[]; selectedId: string }) {
+  @Input() set data(data: { books: BooksEntity[]; selectedId?: string }) {
     this.books = data.books;
     this.selectedId = data.selectedId;
   }
   @Output() outBus: EventEmitter<BookListOutEvents> = new EventEmitter();
 
-  books: BooksEntity[];
-  selectedId: string;
+  books!: BooksEntity[];
+  selectedId?: string;
 
   handleClick(index: number) {
-    const id =
-      this.selectedId === this.books[index].id ? null : this.books[index].id;
+    this.selectedId = this.books[index].id;
     outBusEmit<BookListSelectBookEvent>(
       this.outBus,
       OutputEventNames.BookListSelectBook,
-      id
+      this.selectedId
     );
   }
 

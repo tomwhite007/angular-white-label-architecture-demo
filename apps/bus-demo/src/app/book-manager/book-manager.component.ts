@@ -65,6 +65,6 @@ export class BookManagerComponent implements OnInit {
   };
 
   private clearSelectedBook = () => {
-    this.state.selectBook(null);
+    this.state.selectBook('');
   };
 }

@@ -10,7 +10,7 @@ import { timeStamp } from './date-stamp';
  * @param group - name for group filtering of events
  */
 export function outBusEmit<T extends OutputBusEvent<unknown, unknown>>(
-  outBusRef: EventEmitter<OutputBusEvent<unknown, unknown>>,
+  outBusRef: EventEmitter<OutputBusEvent<any, any>>,
   name: T['name'],
   payload: T['payload'],
   group?: string

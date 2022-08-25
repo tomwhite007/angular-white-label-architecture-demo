@@ -19,8 +19,8 @@ export class ShowFormCheckboxComponent {
   }
   @Output() outBus = new EventEmitter<ShowFormCheckboxChangeEvent>();
 
-  checked: boolean;
-  updateMode: boolean;
+  checked!: boolean;
+  updateMode!: boolean;
 
   handleChange() {
     this.checked = !this.checked;

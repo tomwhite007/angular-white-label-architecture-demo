@@ -16,7 +16,7 @@ export type AddBookFormSubmitEvent = OutputBusEvent<
 >;
 export interface AddBookFormDataInput {
   showForm: boolean;
-  selectedBook: BooksEntity | null;
+  selectedBook: BooksEntity | undefined;
 }
 
 @Component({
@@ -40,8 +40,8 @@ export class AddBookFormComponent {
   }
   @Output() outBus: EventEmitter<AddBookFormSubmitEvent> = new EventEmitter();
 
-  showForm: boolean;
-  selectedBook: BooksEntity | null;
+  showForm!: boolean;
+  selectedBook!: BooksEntity | null;
   formGroup = new FormGroup({
     id: new FormControl(''),
     title: new FormControl(''),
@@ -52,7 +52,7 @@ export class AddBookFormComponent {
     outBusEmit<AddBookFormSubmitEvent>(
       this.outBus,
       OutputEventNames.AddBookFormSubmit,
-      this.formGroup.getRawValue()
+      this.formGroup.getRawValue() as BooksEntity
     );
   }
 }

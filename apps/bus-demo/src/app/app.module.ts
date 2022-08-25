@@ -30,6 +30,7 @@ import * as fromBooks from './+state/books.reducer';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreModule.forFeature(fromBooks.BOOKS_FEATURE_KEY, fromBooks.reducer),
     EffectsModule.forFeature([BooksEffects]),
+    StoreModule.forRoot({}, {}),
   ],
   bootstrap: [AppComponent],
 })

@@ -1,60 +1,46 @@
 {
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "npmScope": "ui-output-bus",
   "affected": {
-    "defaultBase": "master"
+    "defaultBase": "main"
+  },
+  "cli": {
+    "packageManager": "npm"
   },
   "implicitDependencies": {
-    "angular.json": "*",
     "package.json": {
       "dependencies": "*",
       "devDependencies": "*"
     },
-    "tsconfig.base.json": "*",
-    "tslint.json": "*",
-    ".eslintrc.json": "*",
-    "nx.json": "*"
+    ".eslintrc.json": "*"
   },
-  "npmScope": "bus-demo",
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/nx-cloud",
+      "runner": "nx/tasks-runners/default",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
-        "accessToken": "MDIzMmMxNmMtZTBiZi00MzFhLWE3OGMtZGI0NjM0MTliMTkyfHJlYWQtd3JpdGU="
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
       }
     }
   },
-  "projects": {
-    "bus-demo": {
-      "tags": [
-        "scope:bus",
-        "type:app"
-      ]
-    },
-    "bus-demo-e2e": {
-      "tags": [],
-      "implicitDependencies": [
-        "bus-demo"
-      ]
-    },
-    "without-bus-demo": {
-      "tags": [
-        "scope:without",
-        "type:app"
-      ]
-    },
-    "without-bus-demo-e2e": {
-      "tags": [],
-      "implicitDependencies": [
-        "without-bus-demo"
-      ]
-    },
-    "gyrus-ui-output-bus": {
-      "tags": []
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"]
     }
-  }
+  },
+  "generators": {
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "bus-demo"
 }

@@ -39,5 +39,5 @@ export const getSelectedId = createSelector(
 export const getSelected = createSelector(
   getBooksEntities,
   getSelectedId,
-  (entities, selectedId) => selectedId && entities[selectedId]
+  (entities, selectedId) => (selectedId && entities[selectedId]) || undefined
 );

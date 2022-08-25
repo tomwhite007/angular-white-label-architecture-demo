@@ -18,7 +18,7 @@ export class TabsComponent {
   }
   @Output() outBus = new EventEmitter<TabsSelectTabEvent>();
 
-  selectedTab: number;
+  selectedTab!: number;
 
   selectTab(tab: number) {
     this.selectedTab = tab;
