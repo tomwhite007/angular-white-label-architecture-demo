@@ -4,9 +4,9 @@ import { createBooksEntity } from './books.spec.helper';
 
 describe('Books Selectors', () => {
   const ERROR_MSG = 'No Error Available';
-  const getBooksId = (it) => it['id'];
+  const getBooksId = (it: any) => it['id'];
 
-  let state;
+  let state: any;
 
   beforeEach(() => {
     state = {

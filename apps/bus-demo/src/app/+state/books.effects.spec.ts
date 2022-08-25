@@ -5,9 +5,7 @@ import { Observable, of } from 'rxjs';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 
-import { NxModule, DataPersistence } from '@nrwl/angular';
-import { hot } from '@nrwl/angular/testing';
-
+import { hot } from 'jest-marbles';
 import { BooksEffects } from './books.effects';
 import * as BooksActions from './books.actions';
 import { BooksApiService } from '../_shared/services/books-api.service';
@@ -22,10 +20,8 @@ describe('BooksEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [NxModule.forRoot()],
       providers: [
         BooksEffects,
-        DataPersistence,
         provideMockActions(() => actions),
         provideMockStore(),
         { provide: BooksApiService, useValue: mockBooksApiService },
