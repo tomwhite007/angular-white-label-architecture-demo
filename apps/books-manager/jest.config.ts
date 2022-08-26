@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'bus-demo',
+  displayName: 'books-manager',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -9,7 +9,7 @@ export default {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../coverage/apps/bus-demo',
+  coverageDirectory: '../../coverage/apps/books-manager',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

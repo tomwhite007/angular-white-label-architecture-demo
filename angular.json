@@ -2,8 +2,8 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
-    "bus-demo": "apps/bus-demo",
-    "bus-demo-e2e": "apps/bus-demo-e2e",
+    "books-manager": "apps/books-manager",
+    "books-manager-e2e": "apps/books-manager-e2e",
     "gyrus-ui-output-bus": "libs/gyrus/ui-output-bus"
   }
 }

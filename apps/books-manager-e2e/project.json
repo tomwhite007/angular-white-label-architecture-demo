@@ -1,18 +1,18 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/bus-demo-e2e/src",
+  "sourceRoot": "apps/books-manager-e2e/src",
   "projectType": "application",
   "targets": {
     "e2e": {
       "executor": "@nrwl/cypress:cypress",
       "options": {
-        "cypressConfig": "apps/bus-demo-e2e/cypress.config.ts",
-        "devServerTarget": "bus-demo:serve:development",
+        "cypressConfig": "apps/books-manager-e2e/cypress.config.ts",
+        "devServerTarget": "books-manager:serve:development",
         "testingType": "e2e"
       },
       "configurations": {
         "production": {
-          "devServerTarget": "bus-demo:serve:production"
+          "devServerTarget": "books-manager:serve:production"
         }
       }
     },
@@ -20,10 +20,10 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/bus-demo-e2e/**/*.{js,ts}"]
+        "lintFilePatterns": ["apps/books-manager-e2e/**/*.{js,ts}"]
       }
     }
   },
   "tags": [],
-  "implicitDependencies": ["bus-demo"]
+  "implicitDependencies": ["books-manager"]
 }
