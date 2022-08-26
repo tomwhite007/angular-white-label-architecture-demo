@@ -6,7 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { outBusEmit, OutputBusEvent } from '@gyrus/ui-output-bus';
-import { BooksEntity } from '@ui-output-bus/shared/data-access-books';
+import { BooksEntity } from '@books-manager/shared/data-access-books';
 import { OutputEventNames } from '../../_shared/interfaces/output-bus-event-names.interface';
 
 export type BookListSelectBookEvent = OutputBusEvent<

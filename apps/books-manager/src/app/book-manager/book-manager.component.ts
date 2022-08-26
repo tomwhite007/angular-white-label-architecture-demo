@@ -3,7 +3,7 @@ import {
   outputEventHandler,
   UiOutputBusLoggerService,
 } from '@gyrus/ui-output-bus';
-import { BooksEntity } from '@ui-output-bus/shared/data-access-books';
+import { BooksEntity } from '@books-manager/shared/data-access-books';
 import { environment } from '../../environments/environment';
 import { OutputEventNames } from '../_shared/interfaces/output-bus-event-names.interface';
 import { AddBookFormSubmitEvent } from './add-book-form/add-book-form.component';

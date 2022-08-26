@@ -1,7 +1,7 @@
 {
   "projectType": "library",
   "sourceRoot": "libs/shared/data-access-books/src",
-  "prefix": "ui-output-bus",
+  "prefix": "books",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",

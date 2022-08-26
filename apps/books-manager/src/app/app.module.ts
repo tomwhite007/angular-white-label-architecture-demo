@@ -7,7 +7,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { BookManagerModule } from './book-manager/book-manager.module';
 import { HttpClientModule } from '@angular/common/http';
-import { SharedDataAccessBooksModule } from '@ui-output-bus/shared/data-access-books';
+import { SharedDataAccessBooksModule } from '@books-manager/shared/data-access-books';
 
 @NgModule({
   declarations: [AppComponent],

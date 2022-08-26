@@ -1,7 +1,7 @@
 {
   "projectType": "application",
   "sourceRoot": "apps/books-manager/src",
-  "prefix": "ui-output-bus",
+  "prefix": "books-manager",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",

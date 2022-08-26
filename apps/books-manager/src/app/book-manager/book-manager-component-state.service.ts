@@ -3,7 +3,7 @@ import { ComponentStore } from '@ngrx/component-store';
 import {
   BooksFacade,
   BooksEntity,
-} from '@ui-output-bus/shared/data-access-books';
+} from '@books-manager/shared/data-access-books';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 

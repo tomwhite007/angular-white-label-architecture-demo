@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "ui-output-bus",
+            "prefix": "books",
             "style": "kebab-case"
           }
         ]

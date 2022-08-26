@@ -16,7 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@gyrus/ui-output-bus": ["libs/gyrus/ui-output-bus/src/index.ts"],
-      "@ui-output-bus/shared/data-access-books": [
+      "@books-manager/shared/data-access-books": [
         "libs/shared/data-access-books/src/index.ts"
       ]
     }
