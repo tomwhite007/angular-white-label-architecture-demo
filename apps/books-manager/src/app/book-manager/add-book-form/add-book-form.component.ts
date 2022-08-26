@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { outBusEmit, OutputBusEvent } from '@gyrus/ui-output-bus';
-import { BooksEntity } from '../../+state/books.models';
+import { BooksEntity } from '@ui-output-bus/shared/data-access-books';
 import { OutputEventNames } from '../../_shared/interfaces/output-bus-event-names.interface';
 
 export type AddBookFormSubmitEvent = OutputBusEvent<

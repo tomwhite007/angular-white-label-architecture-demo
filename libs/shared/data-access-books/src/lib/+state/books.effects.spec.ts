@@ -8,8 +8,8 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { hot } from 'jest-marbles';
 import { BooksEffects } from './books.effects';
 import * as BooksActions from './books.actions';
-import { BooksApiService } from '../_shared/services/books-api.service';
 import { Action } from '@ngrx/store';
+import { BooksApiService } from '../services/books-api.service';
 
 describe('BooksEffects', () => {
   let actions: Observable<Action>;

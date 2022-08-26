@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BookManagerComponent } from './book-manager.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BooksFacade } from '../+state/books.facade';
 import { AddBookFormComponent } from './add-book-form/add-book-form.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { BookStuffComponent } from './book-stuff/book-stuff.component';
@@ -19,7 +18,6 @@ import { TabsComponent } from './tabs/tabs.component';
     ShowFormCheckboxComponent,
     TabsComponent,
   ],
-  providers: [BooksFacade],
   exports: [BookManagerComponent],
 })
 export class BookManagerModule {}

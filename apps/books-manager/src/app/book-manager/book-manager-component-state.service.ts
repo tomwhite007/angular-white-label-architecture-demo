@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
+import {
+  BooksFacade,
+  BooksEntity,
+} from '@ui-output-bus/shared/data-access-books';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { selectId } from '../+state/books.actions';
-import { BooksFacade } from '../+state/books.facade';
-import { BooksEntity } from '../+state/books.models';
 
 interface LocalState {
   showForm: boolean;
@@ -28,7 +29,7 @@ export class BookManagerComponentStateService extends ComponentStore<LocalState>
       addBookFormData: { showForm: localState.showForm, selectedBook },
       showFormCheckBoxData: {
         checked: localState.showForm,
-        updateMode: !!selectId,
+        updateMode: !!selectedId,
       },
       tabsData: { selectedTab: localState.selectedTab },
       bookListData: { books: allBooks, selectedId },

@@ -7,8 +7,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { BookManagerModule } from './book-manager/book-manager.module';
 import { HttpClientModule } from '@angular/common/http';
-import { BooksEffects } from './+state/books.effects';
-import * as fromBooks from './+state/books.reducer';
+import { SharedDataAccessBooksModule } from '@ui-output-bus/shared/data-access-books';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,9 +27,8 @@ import * as fromBooks from './+state/books.reducer';
     ),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    StoreModule.forFeature(fromBooks.BOOKS_FEATURE_KEY, fromBooks.reducer),
-    EffectsModule.forFeature([BooksEffects]),
     StoreModule.forRoot({}, {}),
+    SharedDataAccessBooksModule,
   ],
   bootstrap: [AppComponent],
 })
