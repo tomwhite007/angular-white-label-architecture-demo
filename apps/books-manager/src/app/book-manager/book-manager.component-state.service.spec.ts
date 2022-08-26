@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
+import { BooksFacade } from '@books-manager/shared/data-access-books';
 import { of } from 'rxjs';
-import { BooksFacade } from '../+state/books.facade';
 import { BookManagerComponentStateService } from './book-manager-component-state.service';
 
 describe('BookManagerComponentStateService', () => {
