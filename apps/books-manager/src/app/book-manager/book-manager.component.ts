@@ -5,12 +5,14 @@ import {
 } from '@gyrus/ui-output-bus';
 import { BooksEntity } from '@books-manager/shared/data-access-books';
 import { environment } from '../../environments/environment';
-import { OutputEventNames } from '../_shared/interfaces/output-bus-event-names.interface';
-import { AddBookFormSubmitEvent } from './add-book-form/add-book-form.component';
-import { BookListOutEvents } from './book-list/book-list.component';
+import { OutputEventNames } from '../../../../../libs/shared/util-books-models/src/lib/interfaces/output-bus-event-names.interface';
 import { BookManagerComponentStateService } from './book-manager-component-state.service';
-import { ShowFormCheckboxChangeEvent } from './show-form-checkbox/show-form-checkbox.component';
-import { TabsSelectTabEvent } from './tabs/tabs.component';
+import {
+  AddBookFormSubmitEvent,
+  BookListOutEvents,
+  ShowFormCheckboxChangeEvent,
+  TabsSelectTabEvent,
+} from '@books-manager/shared/ui-books';
 
 type OutputEvents =
   | AddBookFormSubmitEvent

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { outBusEmit, OutputBusEvent } from '@gyrus/ui-output-bus';
-import { OutputEventNames } from '../../_shared/interfaces/output-bus-event-names.interface';
+import { OutputEventNames } from '@books-manager/shared/util-books-models';
 
 export type ShowFormCheckboxChangeEvent = OutputBusEvent<
   OutputEventNames.ShowFormCheckboxChange,
@@ -8,7 +8,7 @@ export type ShowFormCheckboxChangeEvent = OutputBusEvent<
 >;
 
 @Component({
-  selector: 'app-show-form-checkbox',
+  selector: 'books-show-form-checkbox',
   templateUrl: './show-form-checkbox.component.html',
   styleUrls: ['./show-form-checkbox.component.scss'],
 })

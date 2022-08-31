@@ -19,6 +19,9 @@
         "libs/shared/data-access-books/src/index.ts"
       ],
       "@books-manager/shared/ui-books": ["libs/shared/ui-books/src/index.ts"],
+      "@books-manager/shared/util-books-models": [
+        "libs/shared/util-books-models/src/index.ts"
+      ],
       "@gyrus/ui-output-bus": ["libs/gyrus/ui-output-bus/src/index.ts"]
     }
   },

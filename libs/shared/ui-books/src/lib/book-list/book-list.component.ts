@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { outBusEmit, OutputBusEvent } from '@gyrus/ui-output-bus';
 import { BooksEntity } from '@books-manager/shared/data-access-books';
-import { OutputEventNames } from '../../_shared/interfaces/output-bus-event-names.interface';
+import { OutputEventNames } from '@books-manager/shared/util-books-models';
 
 export type BookListSelectBookEvent = OutputBusEvent<
   OutputEventNames.BookListSelectBook,
@@ -22,7 +22,7 @@ export type BookListOutEvents =
   | BookListClearSelectedBookEvent;
 
 @Component({
-  selector: 'app-book-list',
+  selector: 'books-book-list',
   templateUrl: './book-list.component.html',
   styleUrls: ['./book-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

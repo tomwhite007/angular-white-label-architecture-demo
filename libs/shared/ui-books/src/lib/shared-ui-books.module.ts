@@ -5,9 +5,10 @@ import { BookListComponent } from './book-list/book-list.component';
 import { BookStuffComponent } from './book-stuff/book-stuff.component';
 import { ShowFormCheckboxComponent } from './show-form-checkbox/show-form-checkbox.component';
 import { TabsComponent } from './tabs/tabs.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   declarations: [
     AddBookFormComponent,
     BookListComponent,
