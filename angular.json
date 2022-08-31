@@ -6,6 +6,7 @@
     "books-manager-e2e": "apps/books-manager-e2e",
     "gyrus-ui-output-bus": "libs/gyrus/ui-output-bus",
     "shared-data-access-books": "libs/shared/data-access-books",
+    "shared-feature-books-manager": "libs/shared/feature-books-manager",
     "shared-ui-books": "libs/shared/ui-books",
     "shared-util-books-models": "libs/shared/util-books-models"
   }
