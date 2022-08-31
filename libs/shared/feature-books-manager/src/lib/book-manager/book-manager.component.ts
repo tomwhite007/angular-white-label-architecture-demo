@@ -4,8 +4,7 @@ import {
   UiOutputBusLoggerService,
 } from '@gyrus/ui-output-bus';
 import { BooksEntity } from '@books-manager/shared/data-access-books';
-import { environment } from '../../environments/environment';
-import { OutputEventNames } from '../../../../../libs/shared/util-books-models/src/lib/interfaces/output-bus-event-names.interface';
+// import { environment } from '../../../../../../apps/books-manager/src/environments/environment';
 import { BookManagerComponentStateService } from './book-manager-component-state.service';
 import {
   AddBookFormSubmitEvent,
@@ -13,6 +12,7 @@ import {
   ShowFormCheckboxChangeEvent,
   TabsSelectTabEvent,
 } from '@books-manager/shared/ui-books';
+import { OutputEventNames } from '@books-manager/shared/util-books-models';
 
 type OutputEvents =
   | AddBookFormSubmitEvent
@@ -21,7 +21,6 @@ type OutputEvents =
   | TabsSelectTabEvent;
 
 @Component({
-  selector: 'app-book-manager',
   templateUrl: './book-manager.component.html',
   styleUrls: ['./book-manager.component.scss'],
   providers: [BookManagerComponentStateService],
@@ -39,7 +38,7 @@ export class BookManagerComponent implements OnInit {
   }
 
   outHandler(event: OutputEvents) {
-    environment.production || this.outLog.logOutputEvent(event);
+    // environment.production || this.outLog.logOutputEvent(event);
 
     outputEventHandler(event, {
       [OutputEventNames.AddBookFormSubmit]: this.upsertBook,
