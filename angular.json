@@ -8,6 +8,7 @@
     "shared-data-access-books": "libs/shared/data-access-books",
     "shared-feature-books-manager": "libs/shared/feature-books-manager",
     "shared-ui-books": "libs/shared/ui-books",
-    "shared-util-books-models": "libs/shared/util-books-models"
+    "shared-util-books-models": "libs/shared/util-books-models",
+    "shared-util-config": "libs/shared/util-config"
   }
 }
