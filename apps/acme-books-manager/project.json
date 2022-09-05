@@ -1,7 +1,7 @@
 {
   "projectType": "application",
   "sourceRoot": "apps/acme-books-manager/src",
-  "prefix": "ui-output-bus",
+  "prefix": "acme",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
