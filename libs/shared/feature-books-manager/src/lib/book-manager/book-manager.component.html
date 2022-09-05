@@ -2,28 +2,28 @@
   <h1>Books App</h1>
 </header>
 
-<main *ngIf="vm$ | async as vm">
+<main *ngIf="cs.vm$ | async as vm">
   <section class="mt-5 mb-5">
     <books-show-form-checkbox
       [data]="vm.showFormCheckBoxData"
-      (outBus)="outHandler($event)"
+      (outBus)="cs.outHandler($event)"
     ></books-show-form-checkbox>
 
     <books-add-book-form
       [data]="vm.addBookFormData"
-      (outBus)="outHandler($event)"
+      (outBus)="cs.outHandler($event)"
     ></books-add-book-form>
   </section>
 
   <books-tabs
     [data]="vm.tabsData"
-    (outBus)="outHandler($event)"
+    (outBus)="cs.outHandler($event)"
     [ngSwitch]="vm.tabsData.selectedTab"
   >
     <books-book-list
       *ngSwitchCase="0"
       [data]="vm.bookListData"
-      (outBus)="outHandler($event)"
+      (outBus)="cs.outHandler($event)"
     ></books-book-list>
 
     <app-book-stuff *ngSwitchCase="1"></app-book-stuff>

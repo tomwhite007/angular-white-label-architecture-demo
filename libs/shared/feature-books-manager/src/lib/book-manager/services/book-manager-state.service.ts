@@ -19,7 +19,7 @@ declare global {
 }
 
 @Injectable()
-export class BookManagerComponentStateService extends ComponentStore<LocalState> {
+export class BookManagerStateService extends ComponentStore<LocalState> {
   readonly vm$ = this.select(
     this.select((state) => state),
     this.books.allBooks$,

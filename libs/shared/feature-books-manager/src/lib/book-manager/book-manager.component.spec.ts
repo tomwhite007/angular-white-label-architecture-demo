@@ -2,7 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { BooksFacade } from '@books-manager/shared/data-access-books';
 import { of } from 'rxjs';
-import { BookManagerComponentStateService } from './book-manager-component-state.service';
+import { BookManagerStateService } from './book-manager-state.service';
 import { BookManagerComponent } from './book-manager.component';
 
 const mockStateService = {
@@ -29,7 +29,7 @@ describe('BookManagerComponent', () => {
       declarations: [BookManagerComponent],
       providers: [
         {
-          provide: BookManagerComponentStateService,
+          provide: BookManagerStateService,
           useValue: mockStateService,
         },
         { provide: BooksFacade, useValue: mockBooksFacade },
