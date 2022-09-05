@@ -1,6 +1,11 @@
+import { Inject, Injectable } from '@angular/core';
 import { ExtendableEnvironment } from '../interfaces/extendable-environment';
+import { ENVIRONMENT_TOKEN } from '../shared-util-config.module';
 
-// Instantiated by factory
+@Injectable()
 export class ConfigService {
-  constructor(public readonly environment: ExtendableEnvironment) {}
+  constructor(
+    @Inject(ENVIRONMENT_TOKEN)
+    public readonly environment: ExtendableEnvironment
+  ) {}
 }
