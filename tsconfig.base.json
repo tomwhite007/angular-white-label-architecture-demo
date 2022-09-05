@@ -25,10 +25,10 @@
       "@books-manager/shared/util-books-models": [
         "libs/shared/util-books-models/src/index.ts"
       ],
-      "@gyrus/ui-output-bus": ["libs/gyrus/ui-output-bus/src/index.ts"],
-      "@ui-output-bus/shared/util-config": [
+      "@books-manager/shared/util-config": [
         "libs/shared/util-config/src/index.ts"
-      ]
+      ],
+      "@gyrus/ui-output-bus": ["libs/gyrus/ui-output-bus/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

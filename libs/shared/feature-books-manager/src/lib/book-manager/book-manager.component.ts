@@ -4,7 +4,6 @@ import {
   UiOutputBusLoggerService,
 } from '@gyrus/ui-output-bus';
 import { BooksEntity } from '@books-manager/shared/data-access-books';
-// import { environment } from '../../../../../../apps/books-manager/src/environments/environment';
 import { BookManagerComponentStateService } from './book-manager-component-state.service';
 import {
   AddBookFormSubmitEvent,
@@ -13,6 +12,7 @@ import {
   TabsSelectTabEvent,
 } from '@books-manager/shared/ui-books';
 import { OutputEventNames } from '@books-manager/shared/util-books-models';
+import { ConfigService } from '@books-manager/shared/util-config';
 
 type OutputEvents =
   | AddBookFormSubmitEvent
@@ -30,7 +30,8 @@ export class BookManagerComponent implements OnInit {
 
   constructor(
     private state: BookManagerComponentStateService,
-    private outLog: UiOutputBusLoggerService
+    private outLog: UiOutputBusLoggerService,
+    private config: ConfigService
   ) {}
 
   ngOnInit() {
@@ -38,7 +39,7 @@ export class BookManagerComponent implements OnInit {
   }
 
   outHandler(event: OutputEvents) {
-    // environment.production || this.outLog.logOutputEvent(event);
+    this.config.environment.production || this.outLog.logOutputEvent(event);
 
     outputEventHandler(event, {
       [OutputEventNames.AddBookFormSubmit]: this.upsertBook,

@@ -8,6 +8,7 @@ import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedDataAccessBooksModule } from '@books-manager/shared/data-access-books';
 import { AppRoutingModule } from './app-routing.module';
+import { SharedUtilConfigModule } from '@books-manager/shared/util-config';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +30,7 @@ import { AppRoutingModule } from './app-routing.module';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreModule.forRoot({}, {}),
     SharedDataAccessBooksModule,
+    SharedUtilConfigModule.forRoot(environment),
   ],
   bootstrap: [AppComponent],
 })
