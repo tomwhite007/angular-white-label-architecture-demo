@@ -33,3 +33,9 @@ pre {
   align-items: center;
   justify-content: center;
 }
+
+books-book-list {
+  tr.selected {
+    background-color: #f195a9;
+  }
+}
