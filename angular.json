@@ -4,6 +4,7 @@
   "projects": {
     "acme-books-manager": "apps/acme-books-manager",
     "acme-books-manager-e2e": "apps/acme-books-manager-e2e",
+    "acme-feature-books-manager": "libs/acme/feature-books-manager",
     "books-manager": "apps/books-manager",
     "books-manager-e2e": "apps/books-manager-e2e",
     "gyrus-ui-output-bus": "libs/gyrus/ui-output-bus",

@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@acme/feature-books-manager": [
+        "libs/acme/feature-books-manager/src/index.ts"
+      ],
       "@books-manager/shared/data-access-books": [
         "libs/shared/data-access-books/src/index.ts"
       ],
