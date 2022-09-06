@@ -2,6 +2,10 @@
 
 Experiment into using merged @Inputs and @Output as a bus to reduce template footprint.
 
+## Latest News
+
+On reflection, I believe that while the concept of an Output Bus is sound, my implementation using a lib to do it is probably overkill. I intend to rewrite this solution into a simple lightweight function so as to reduce learning required, and hopefully negate the need for an npm lib at all.
+
 ## NPM library link
 
 This library is also available as an NPM lib: [ngx-ui-output-bus](https://www.npmjs.com/package/@gyrus/ngx-ui-output-bus)
