@@ -1,0 +1,36 @@
+<ng-container *ngIf="cs.vm$ | async as vm">
+  <header>
+    <h1>Acme Books App</h1>
+    <nav>
+      <books-tabs
+        [data]="vm.tabsData"
+        (outBus)="cs.outHandler($event)"
+        [ngSwitch]="vm.tabsData.selectedTab"
+      ></books-tabs>
+    </nav>
+  </header>
+
+  <main [ngSwitch]="vm.tabsData.selectedTab">
+    <section *ngSwitchCase="0">
+      <books-add-book-form
+        *ngIf="vm.addBookFormData.showForm; else bookList"
+        [data]="vm.addBookFormData"
+        (outBus)="cs.outHandler($event)"
+      ></books-add-book-form>
+
+      <ng-template #bookList>
+        <books-book-list
+          [data]="vm.bookListData"
+          (outBus)="cs.outHandler($event)"
+        ></books-book-list>
+      </ng-template>
+
+      <books-show-form-checkbox
+        [data]="vm.showFormCheckBoxData"
+        (outBus)="cs.outHandler($event)"
+      ></books-show-form-checkbox>
+    </section>
+
+    <app-book-stuff *ngSwitchCase="1"></app-book-stuff>
+  </main>
+</ng-container>

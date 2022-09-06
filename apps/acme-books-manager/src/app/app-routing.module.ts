@@ -6,8 +6,8 @@ const routes: Routes = [
   {
     path: 'books',
     loadChildren: () =>
-      import('@books-manager/shared/feature-books-manager').then(
-        (m) => m.SharedFeatureBooksManagerModule
+      import('@acme/feature-books-manager').then(
+        (m) => m.AcmeFeatureBooksManagerModule
       ),
     title: 'Books Manager',
   },

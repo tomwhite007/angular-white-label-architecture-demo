@@ -39,3 +39,36 @@ books-book-list {
     background-color: #f195a9;
   }
 }
+
+books-add-book-form,
+books-show-form-checkbox {
+  display: block;
+  margin: 20px auto;
+}
+
+.table {
+  .thead-dark {
+    th {
+      background-color: #551423;
+      border: none;
+    }
+  }
+}
+
+.nav-tabs .nav-link.active {
+  color: #551423;
+  background-color: #f195a9;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #551423;
+  border-color: #551423;
+  &:hover,
+  &:focus,
+  &:active {
+    color: #551423;
+    background-color: #f195a9 !important;
+    border-color: #f195a9;
+  }
+}
