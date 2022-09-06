@@ -1,7 +1,7 @@
 import { OutputBusEvent } from '../interfaces/output-bus-event.interface';
 
 interface HandlerLookup {
-  [eventName: string]: (payload: unknown) => void;
+  [eventName: string]: (payload: any) => void;
 }
 
 /**
@@ -18,7 +18,7 @@ export function outputEventHandler(
 ) {
   try {
     handlerLookup[event.name](event.payload);
-  } catch (err) {
+  } catch (err: any) {
     if (err.message === `handlerLookup[event.name] is not a function`) {
       if (!ignoreMissing) {
         throw new Error(

@@ -1,0 +1,41 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/gyrus/ui-output-bus/src",
+  "prefix": "ui-output-bus",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/gyrus/ui-output-bus"],
+      "options": {
+        "project": "libs/gyrus/ui-output-bus/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/gyrus/ui-output-bus/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/gyrus/ui-output-bus/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/gyrus/ui-output-bus"],
+      "options": {
+        "jestConfig": "libs/gyrus/ui-output-bus/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/gyrus/ui-output-bus/**/*.ts",
+          "libs/gyrus/ui-output-bus/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

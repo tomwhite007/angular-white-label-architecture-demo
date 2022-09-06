@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/feature-books-manager/src",
+  "prefix": "books-manager",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/feature-books-manager"],
+      "options": {
+        "jestConfig": "libs/shared/feature-books-manager/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/feature-books-manager/**/*.ts",
+          "libs/shared/feature-books-manager/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:shared", "type:feature"]
+}

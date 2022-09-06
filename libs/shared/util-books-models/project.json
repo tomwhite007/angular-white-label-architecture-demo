@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/util-books-models/src",
+  "prefix": "ui-output-bus",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/util-books-models"],
+      "options": {
+        "jestConfig": "libs/shared/util-books-models/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/util-books-models/**/*.ts",
+          "libs/shared/util-books-models/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:shared", "type:util"]
+}

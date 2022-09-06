@@ -10,17 +10,29 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "typeRoots": ["node_modules/@types"],
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@acme/feature-books-manager": [
+        "libs/acme/feature-books-manager/src/index.ts"
+      ],
+      "@books-manager/shared/data-access-books": [
+        "libs/shared/data-access-books/src/index.ts"
+      ],
+      "@books-manager/shared/feature-books-manager": [
+        "libs/shared/feature-books-manager/src/index.ts"
+      ],
+      "@books-manager/shared/ui-books": ["libs/shared/ui-books/src/index.ts"],
+      "@books-manager/shared/util-books-models": [
+        "libs/shared/util-books-models/src/index.ts"
+      ],
+      "@books-manager/shared/util-config": [
+        "libs/shared/util-config/src/index.ts"
+      ],
       "@gyrus/ui-output-bus": ["libs/gyrus/ui-output-bus/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp"],
-  "angularCompilerOptions": {
-    "strictTemplates": true
-  }
+  "exclude": ["node_modules", "tmp"]
 }

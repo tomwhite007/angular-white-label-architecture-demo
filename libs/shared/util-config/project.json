@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/util-config/src",
+  "prefix": "config",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/util-config"],
+      "options": {
+        "jestConfig": "libs/shared/util-config/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/util-config/**/*.ts",
+          "libs/shared/util-config/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:shared", "type:util"]
+}
