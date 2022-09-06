@@ -1,6 +1,9 @@
 import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ExtendableEnvironment } from './interfaces/extendable-environment';
+import {
+  ExtendableEnvironment,
+  SharedBooksEnvironment,
+} from './interfaces/extendable-environment';
 import { ConfigService } from './services/config.service';
 
 export const ENVIRONMENT_TOKEN = new InjectionToken<ExtendableEnvironment>(
@@ -12,7 +15,7 @@ export const ENVIRONMENT_TOKEN = new InjectionToken<ExtendableEnvironment>(
 })
 export class SharedUtilConfigModule {
   static forRoot(
-    _environment: ExtendableEnvironment
+    _environment: SharedBooksEnvironment
   ): ModuleWithProviders<SharedUtilConfigModule> {
     return {
       ngModule: SharedUtilConfigModule,

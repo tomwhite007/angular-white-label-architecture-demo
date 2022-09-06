@@ -7,7 +7,10 @@ import {
   TabsSelectTabEvent,
 } from '@books-manager/shared/ui-books';
 import { OutputEventNames } from '@books-manager/shared/util-books-models';
-import { ConfigService } from '@books-manager/shared/util-config';
+import {
+  ConfigService,
+  SharedBooksEnvironment,
+} from '@books-manager/shared/util-config';
 import {
   UiOutputBusLoggerService,
   outputEventHandler,
@@ -27,7 +30,7 @@ export class BookManagerComponentService {
   constructor(
     private state: BookManagerStateService,
     private outLog: UiOutputBusLoggerService,
-    private config: ConfigService
+    private config: ConfigService<SharedBooksEnvironment>
   ) {}
 
   init() {
@@ -56,6 +59,9 @@ export class BookManagerComponentService {
 
   private upsertBook = (book: BooksEntity) => {
     this.state.upsertBook(book);
+    if (this.config.environment.flow.returnToListAfterUpsert) {
+      this.toggleShowForm();
+    }
   };
 
   private selectBook = (id: string) => {
