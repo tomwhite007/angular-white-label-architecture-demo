@@ -28,7 +28,6 @@ import { SharedUtilConfigModule } from '@books-manager/shared/util-config';
     ),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    StoreModule.forRoot({}, {}),
     SharedDataAccessBooksModule,
     SharedUtilConfigModule.forRoot(environment),
   ],
