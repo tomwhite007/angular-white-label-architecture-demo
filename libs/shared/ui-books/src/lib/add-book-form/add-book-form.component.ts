@@ -49,7 +49,7 @@ export class AddBookFormComponent {
   buttonText = 'Add book';
 
   submit() {
-    outBusEmit<AddBookFormSubmitEvent>(
+    outBusEmit(
       this.outBus,
       OutputEventNames.AddBookFormSubmit,
       this.formGroup.getRawValue() as BooksEntity

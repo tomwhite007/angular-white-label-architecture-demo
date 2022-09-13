@@ -12,7 +12,7 @@ interface HandlerLookup {
  * @param ignoreMissing Optionally allow unhandled events to pass through silently
  */
 export function outputEventHandler(
-  event: OutputBusEvent<string, unknown>,
+  event: OutputBusEvent,
   handlerLookup: HandlerLookup,
   ignoreMissing = false
 ) {

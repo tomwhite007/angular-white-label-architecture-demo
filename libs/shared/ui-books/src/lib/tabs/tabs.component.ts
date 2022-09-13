@@ -22,10 +22,6 @@ export class TabsComponent {
 
   selectTab(tab: number) {
     this.selectedTab = tab;
-    outBusEmit<TabsSelectTabEvent>(
-      this.outBus,
-      OutputEventNames.TabsSelectTab,
-      tab
-    );
+    outBusEmit(this.outBus, OutputEventNames.TabsSelectTab, tab);
   }
 }

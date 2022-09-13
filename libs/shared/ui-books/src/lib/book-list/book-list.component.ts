@@ -39,7 +39,7 @@ export class BookListComponent {
 
   handleClick(index: number) {
     this.selectedId = this.books[index].id;
-    outBusEmit<BookListSelectBookEvent>(
+    outBusEmit(
       this.outBus,
       OutputEventNames.BookListSelectBook,
       this.selectedId
@@ -47,11 +47,7 @@ export class BookListComponent {
   }
 
   clearSelected() {
-    outBusEmit<BookListClearSelectedBookEvent>(
-      this.outBus,
-      OutputEventNames.BookListClearSelectedBook,
-      null
-    );
+    outBusEmit(this.outBus, OutputEventNames.BookListClearSelectedBook, null);
   }
 
   trackByFn(index: number, item: BooksEntity) {

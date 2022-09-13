@@ -24,7 +24,7 @@ export class ShowFormCheckboxComponent {
 
   handleChange() {
     this.checked = !this.checked;
-    outBusEmit<ShowFormCheckboxChangeEvent>(
+    outBusEmit(
       this.outBus,
       OutputEventNames.ShowFormCheckboxChange,
       this.checked
