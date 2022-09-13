@@ -1,6 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { OutputBusEvent } from '../interfaces/output-bus-event.interface';
-import { timeStamp } from './date-stamp';
+import { timeStamp } from './time-stamp';
 
 /**
  * Builds OutputBusEvent object and emits it via the outBusRef emitter
