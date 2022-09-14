@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BooksEntity } from '@books-manager/shared/data-access-books';
 import {
   AddBookFormSubmitEvent,
@@ -34,7 +34,7 @@ export class BookManagerComponentService {
   ) {}
 
   init() {
-    this.state.loadBooks();
+    this.state.init();
   }
 
   outHandler(event: OutputEvents) {

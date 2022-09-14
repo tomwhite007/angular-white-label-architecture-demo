@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { ComponentStore } from '@ngrx/component-store';
 import {
   BooksFacade,
   BooksEntity,
 } from '@books-manager/shared/data-access-books';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { BehaviorSubject, combineLatest } from 'rxjs';
+import { distinctUntilChanged, map, tap } from 'rxjs/operators';
 
 interface LocalState {
   showForm: boolean;
@@ -18,14 +18,21 @@ declare global {
   }
 }
 
+@UntilDestroy()
 @Injectable()
-export class BookManagerStateService extends ComponentStore<LocalState> {
-  readonly vm$ = this.select(
-    this.select((state) => state),
+export class BookManagerStateService {
+  private state$ = new BehaviorSubject<LocalState>({
+    showForm: false,
+    selectedTab: 0,
+  });
+
+  readonly vm$ = combineLatest([
+    this.state$,
     this.books.allBooks$,
     this.books.selectedBook$,
     this.books.selectedId$,
-    (localState, allBooks, selectedBook, selectedId) => ({
+  ]).pipe(
+    map(([localState, allBooks, selectedBook, selectedId]) => ({
       addBookFormData: { showForm: localState.showForm, selectedBook },
       showFormCheckBoxData: {
         checked: localState.showForm,
@@ -33,50 +40,55 @@ export class BookManagerStateService extends ComponentStore<LocalState> {
       },
       tabsData: { selectedTab: localState.selectedTab },
       bookListData: { books: allBooks, selectedId },
-    })
+    }))
   );
 
-  readonly selectedTab$ = this.select((state) => state.selectedTab);
+  constructor(private books: BooksFacade) {}
 
-  constructor(private books: BooksFacade) {
-    super({
-      showForm: false,
-      selectedTab: 0,
+  init() {
+    this.updateGoogleAnalyticsWithTabSelected();
+    this.loadBooks();
+  }
+
+  // local state updaters
+
+  toggleShowForm() {
+    const state = this.state$.value;
+    this.state$.next({
+      ...state,
+      showForm: !state.showForm,
     });
   }
 
-  // Updaters
+  setSelectedTab(tabNo: number) {
+    const state = this.state$.value;
+    this.state$.next({
+      ...state,
+      selectedTab: tabNo,
+    });
+  }
 
-  readonly toggleShowForm = this.updater((state) => ({
-    ...state,
-    showForm: !state.showForm,
-  }));
+  // local state effects
 
-  readonly setSelectedTab = this.updater((state, tabNo: number) => ({
-    ...state,
-    selectedTab: tabNo,
-  }));
-
-  // Effects
-
-  readonly updateGoogleAnalyticsWithTabSelected = this.effect(
-    (selectedTab$: Observable<number>) => {
-      return selectedTab$.pipe(
-        tap((tab) => {
-          window.dataLayer = window.dataLayer || [];
-          // fake Google Analytics event
-          window.dataLayer.push({
-            event: 'tabSelected',
-            value: tab,
-          });
-        })
-      );
-    }
-  )(this.selectedTab$);
+  updateGoogleAnalyticsWithTabSelected() {
+    this.state$.pipe(
+      untilDestroyed(this),
+      map((state) => state.selectedTab),
+      distinctUntilChanged(),
+      tap((tab) => {
+        window.dataLayer = window.dataLayer || [];
+        // fake Google Analytics event
+        window.dataLayer.push({
+          event: 'tabSelected',
+          value: tab,
+        });
+      })
+    );
+  }
 
   // Global state
 
-  loadBooks() {
+  private loadBooks() {
     this.books.loadBooks();
   }
 
