@@ -31,7 +31,10 @@
       "@books-manager/shared/util-config": [
         "libs/shared/util-config/src/index.ts"
       ],
-      "@gyrus/ui-output-bus": ["libs/gyrus/ui-output-bus/src/index.ts"]
+      "@gyrus/ui-output-bus": ["libs/gyrus/ui-output-bus/src/index.ts"],
+      "@shared/ui-books-base-styles": [
+        "libs/shared/ui-books-base-styles/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

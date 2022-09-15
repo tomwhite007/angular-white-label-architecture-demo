@@ -18,6 +18,9 @@
           "apps/books-manager/src/assets"
         ],
         "styles": ["apps/books-manager/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["libs/shared/ui-books-base-styles/src"]
+        },
         "scripts": []
       },
       "configurations": {
