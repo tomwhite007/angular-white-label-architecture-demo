@@ -51,4 +51,18 @@ books-book-list {
   tr.selected {
     background-color: #95dcf1;
   }
+
+  th:first-child {
+    position: relative;
+    padding-left: 48px;
+
+    .read-icon {
+      height: 28px;
+      width: 30px;
+      fill: #fff;
+      position: absolute;
+      top: 10px;
+      left: 8px;
+    }
+  }
 }
