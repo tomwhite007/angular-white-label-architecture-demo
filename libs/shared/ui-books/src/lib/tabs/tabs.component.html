@@ -1,19 +1,11 @@
 <nav>
   <ul class="nav nav-tabs">
-    <li class="nav-item">
+    <li class="nav-item" *ngFor="let text of tabText; let i = index">
       <a
         class="nav-link"
-        (click)="selectTab(0)"
-        [class.active]="selectedTab === 0"
-        >Book List</a
-      >
-    </li>
-    <li class="nav-item">
-      <a
-        class="nav-link"
-        (click)="selectTab(1)"
-        [class.active]="selectedTab === 1"
-        >Other Book Stuff</a
+        (click)="selectTab(i)"
+        [class.active]="selectedTab === i"
+        >{{ text }}</a
       >
     </li>
   </ul>

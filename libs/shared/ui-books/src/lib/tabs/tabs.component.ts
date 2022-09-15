@@ -13,12 +13,14 @@ export type TabsSelectTabEvent = OutputBusEvent<
   styleUrls: ['./tabs.component.scss'],
 })
 export class TabsComponent {
-  @Input() set data(data: { selectedTab: number }) {
+  @Input() set data(data: { tabText: string[]; selectedTab: number }) {
+    this.tabText = data.tabText;
     this.selectedTab = data.selectedTab;
   }
   @Output() outBus = new EventEmitter<TabsSelectTabEvent>();
 
   selectedTab!: number;
+  tabText: string[] = [];
 
   selectTab(tab: number) {
     this.selectedTab = tab;

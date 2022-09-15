@@ -10,4 +10,5 @@ export interface SharedBooksEnvironment extends DefaultEnvironment {
   flow: {
     returnToListAfterUpsert: boolean;
   };
+  tabText: string[];
 }
