@@ -3,6 +3,19 @@ header {
   color: white;
   padding: 5px;
   border-radius: 3px;
+  height: 60px;
+  justify-content: center;
+  gap: 50px;
+
+  .read-book {
+    height: 40px;
+    width: 50px;
+    fill: #fff;
+  }
+
+  h1 {
+    margin: 0;
+  }
 }
 
 main {
@@ -37,5 +50,19 @@ pre {
 books-book-list {
   tr.selected {
     background-color: #95dcf1;
+  }
+
+  th:first-child {
+    position: relative;
+    padding-left: 48px;
+
+    .read-icon {
+      height: 28px;
+      width: 30px;
+      fill: #fff;
+      position: absolute;
+      top: 10px;
+      left: 8px;
+    }
   }
 }
