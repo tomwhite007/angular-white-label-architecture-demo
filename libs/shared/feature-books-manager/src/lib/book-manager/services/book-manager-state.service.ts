@@ -6,6 +6,10 @@ import {
 } from '@books-manager/shared/data-access-books';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import {
+  ConfigService,
+  SharedBooksEnvironment,
+} from '@books-manager/shared/util-config';
 
 interface LocalState {
   showForm: boolean;
@@ -31,14 +35,20 @@ export class BookManagerStateService extends ComponentStore<LocalState> {
         checked: localState.showForm,
         updateMode: !!selectedId,
       },
-      tabsData: { selectedTab: localState.selectedTab },
+      tabsData: {
+        tabText: this.config.environment.tabText,
+        selectedTab: localState.selectedTab,
+      },
       bookListData: { books: allBooks, selectedId },
     })
   );
 
   readonly selectedTab$ = this.select((state) => state.selectedTab);
 
-  constructor(private books: BooksFacade) {
+  constructor(
+    private books: BooksFacade,
+    private config: ConfigService<SharedBooksEnvironment>
+  ) {
     super({
       showForm: false,
       selectedTab: 0,

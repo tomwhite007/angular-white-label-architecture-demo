@@ -9,6 +9,7 @@ export const environment: SharedBooksEnvironment = {
   flow: {
     returnToListAfterUpsert: true,
   },
+  tabText: ['Catalog', 'About'],
 };
 
 /*
