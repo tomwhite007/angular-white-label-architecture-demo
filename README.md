@@ -1,46 +1,50 @@
-# ui-output-bus
+# Angular-white-label-architecture-demo
 
-Experiment into using merged @Inputs and @Output as a bus to reduce template footprint.
+Experiment into using various combined patterns to maximise reusable code in a white label monorepo.
 
-## Latest News
+This repo contains two apps: 'books-manager' the base app, and 'acme-books-manager', which reuses most of books-manager's code but has its own Container Component template to re-compose the UI into a different layout, theme, config, api and UX.
 
-On reflection, I believe that while the concept of an Output Bus is sound, my implementation using a lib to do it is probably overkill. I intend to rewrite this solution into a simple lightweight function so as to reduce learning required, and hopefully negate the need for an npm lib at all.
+## Built with Nrwl Nx
 
-## NPM library link
+This is an Angular project containing 2 apps that runs on Nrwl Nx. To serve either of them from the command line:
 
-This library is also available as an NPM lib: [ngx-ui-output-bus](https://www.npmjs.com/package/@gyrus/ngx-ui-output-bus)
+```
+npx nx serve books-manager
 
-## Watch it go
+npx nx serve acme-books-manager
+```
 
-1. `ng serve`
-2. Open the console so you can see the logged events
-3. Start clicking
+There are other scripts available in `package.json`
 
-## Background
+## White Label Patterns Used
 
-When creating feature UI / Presenter / Dumb (or Atomic Organism) components that get used in many places, i.e. apps that use common features, having many @Inputs and @Outputs makes the containing templates bloated and hard to read. On top of that, repeated revisions of the UI component might include changes or additions to @Inputs and @Outputs that need to be updated in every template (and underlying local state) where the component is used. Some of these can easily be missed by the compiler (e.g. if the UI component doesn't throw an error for missing @Inputs), meaning that all implementations have to be updated manually. This maintenance increases to potentially unmanageable levels at scale.
+- [Enterprise Angular Monorepo Patterns](https://go.nrwl.io/angular-enterprise-monorepo-patterns-new-book) - to maximise code reuse.
+- Public Container Services - to allow Container Class methods to be reused.
+- UI Components Merged Inputs and Output Bus - to reduce @Input and @Output maintenance in templates.
+- Shared Base Styles lib with CSS Variables for theme values.
+- Lazy loaded SVG Sprite Sheets - for svg theming, and reduced initial bundle.
+- Config Service to provide Environment Variables to agnostic libs.
+- Common Environment Variables interface for consistency.
+- Common Environment Variables function to reuse common values across environments.
 
-This repo experiment builds on the concept used my many developers to group @Inputs into one or two big ones for easier maintenance. [See this repo by Tim Deschryver for a similar approach](https://github.com/timdeschryver/ngrx-family-grocery-list/blob/master/src/app/groceries/pages/grocery-family-member-page.component.ts) and [this article by Brandon Roberts](https://dev.to/brandontroberts/maximizing-and-simplifying-component-views-with-ngrx-selectors-286j). The next step to me seems to find the easiest way to group @Outputs together into one. [See the books-manager app in this repo for how I've achieved that](apps/books-manager/src/app/book-manager/book-manager.component.html).
+### Enterprise Angular Monorepo Patterns
 
-If you can think of a better way to address any of these concerns, I'd like to hear it. Please do comment.
+Are a tried and tested way of separating code into reusable chunks. Manfred Steyer has an alternative pattern that is equally good for this: [Tactical Domain-Driven Design](https://www.angulararchitects.io/en/aktuelles/tactical-domain-driven-design-with-monorepos/).
 
-## Todo
+But if you don't like the volume of libs either of these create, you could just split into libraries at the feature/container level, and then at the UI (presenter) level. But you'd have to be careful about not creating circular dependencies that way.
 
-- Create marbles tests on Component Store repo
-- Add unit tests to lib
+## Public Container Services
 
-## Extra Possible Ideas
+Methods that would normally appear in a Container Component class are moved into a service provided by the same component. The Container Service in then injected into the constructor of the Container Component using the `public` Access Modifier. Now all the public service methods can be used directly in the template, and so reused by other templates that want to reuse the same state an logic - but with a different template layout.
 
-- Output Bus Emitter
-  - [ ] Extend EventEmitter, rather than use pure function (outBusEmit) to simplify emit syntax?
-- Output Bus handler
-  - [ ] update observable as separate helper
-- Logger
-  - [ ] Log filter at module or container component level
-  - [ ] Highlight log events instead of filter
-  - [ ] logging on by default in non-prod mode
-- RxJs operators
-  - [ ] filter events
-  - [ ] stream logger
-- Loopback helper
-  - [ ] convert specified Output events to typed Inputs stream
+Thanks to [Aristeidis Bampakos](https://twitter.com/abampakos) for this concept.
+
+## UI Components Merged Inputs and Output Bus
+
+This pattern is designed to reduce template maintenance from revisions to UI components which can be time-consuming and bug prone at scale.
+
+The Inputs are reduced to either one or two inputs for each component; `@Input() data` for the view model, and `@Input() config` for unchanging input values.
+
+The Outputs are bused together into labelled event packets with typed payloads, and then de-bussed via an object map of inline functions. This has the benefit of having a single point to log component activity.
+
+The Output Bus library is also available as an NPM lib: [ngx-ui-output-bus](https://www.npmjs.com/package/@gyrus/ngx-ui-output-bus). But copying the simple library code instead means your team can customise it to suit your requirements.
