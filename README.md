@@ -29,13 +29,13 @@ There are other scripts available in `package.json`
 
 ### Enterprise Angular Monorepo Patterns
 
-Are a tried and tested way of separating code into reusable chunks. Manfred Steyer has an alternative pattern that is equally good for this: [Tactical Domain-Driven Design](https://www.angulararchitects.io/en/aktuelles/tactical-domain-driven-design-with-monorepos/).
+Enterprise Angular Monorepo Patterns are a tried and tested way of separating code into reusable chunks. Manfred Steyer has an alternative pattern that is equally good for this: [Tactical Domain-Driven Design](https://www.angulararchitects.io/en/aktuelles/tactical-domain-driven-design-with-monorepos/).
 
 But if you don't like the volume of libs either of these create, you could just split into libraries at the feature/container level, and then at the UI (presenter) level. But you'd have to be careful about not creating circular dependencies that way.
 
 ## Public Container Services
 
-Methods that would normally appear in a Container Component class are moved into a service provided by the same component. The Container Service in then injected into the constructor of the Container Component using the `public` Access Modifier. Now all the public service methods can be used directly in the template, and so reused by other templates that want to reuse the same state an logic - but with a different template layout.
+Methods that would normally appear in a Container Component class are moved into a service provided by the same component. The Container Service is then injected into the constructor of the Container Component using the `public` Access Modifier. Now all the public service methods can be used directly in the template, and so reused by other templates that want to reuse the same state and logic - but with a different template layout.
 
 Thanks to [Aristeidis Bampakos](https://twitter.com/abampakos) for this concept.
 
