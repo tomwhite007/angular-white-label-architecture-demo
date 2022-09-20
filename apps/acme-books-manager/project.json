@@ -18,6 +18,9 @@
           "apps/acme-books-manager/src/assets"
         ],
         "styles": ["apps/acme-books-manager/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["libs/shared/ui-books-base-styles/src"]
+        },
         "scripts": []
       },
       "configurations": {
