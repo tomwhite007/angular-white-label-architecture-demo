@@ -29,6 +29,10 @@ There are other scripts available in `package.json`
 
 ### Enterprise Angular Monorepo Patterns
 
+The libraries in this repo are built using the Enterprise Angular Monorepo Patterns architecture. Each lib can only be one of four types; `data-access`, `feature`, `ui`, or `util` (note the prefix on the folder names of each lib).
+
+There are strict rules about which lib do, and which type can import from another type (See: [Slide Deck showing the benefits and a quick introduction to Enterprise Angular Monorepo Patterns](https://docs.google.com/presentation/d/1onEJciG3Yxb5PoOxl9ZyYCcdc-FykPEoDl4utx4k7WU/edit?usp=sharing)). This forces the app's architecture into a tree-like structure of modular libs that are shareable at the point that is the most useful to other apps.
+
 Enterprise Angular Monorepo Patterns are a tried and tested way of separating code into reusable chunks. Manfred Steyer has an alternative pattern that is equally good for this: [Tactical Domain-Driven Design](https://www.angulararchitects.io/en/aktuelles/tactical-domain-driven-design-with-monorepos/).
 
 But if you don't like the volume of libs either of these create, you could just split into libraries at the feature/container level, and then at the UI (presenter) level. But you'd have to be careful about not creating circular dependencies that way.
